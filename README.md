@@ -42,6 +42,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Juan Alonso Campos Guerra
 - Gabriela Elizabeth Rivera
 - Raphael Dotse
-- Pius Mukisa
 - Jaime Santiago Herrera David
 - Jose Pablo Arizandieta
