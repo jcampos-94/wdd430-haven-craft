@@ -7,3 +7,4 @@
 - Raphael Dotse
 - Pius Mukisa
 - Jaime Santiago Herrera David
+- Jose Pablo Arizandieta
