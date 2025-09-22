@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <nav>
-        <Image alt="logo" src={''} width={1} height={2} />
+        <Image alt="Handcrafted Haven logo" src={"/logo.png"} width={100} height={100} />
         <h1>Handcrafted Haven</h1>
         <Link href={''}>Home</Link>
         <Link href={''}>Profiles</Link>
