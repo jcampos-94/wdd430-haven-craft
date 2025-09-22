@@ -1,8 +1,29 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import Link from 'next/link';
+import ProductCard from "./components/ProductCard";
+
 
 export default function Home() {
+
+  const products = [
+    {
+      id: 1,
+      name: "Bracelet",
+      image: "/products/Handcrafted.jpg",
+    },
+    {
+      id: 2,
+      name: "Origami",
+      image: "/products/origami.jpg",
+    },
+    {
+      id: 3,
+      name: "Fabric Cambaya",
+      image: "/products/ponchos.jpg",
+    },
+  ];
+
   return (
     <div className={styles.page}>
       <nav>
@@ -14,11 +35,10 @@ export default function Home() {
         <Link href={''}>Cart</Link>
       </nav>
       <main>
-        <Image alt="" src={''} width={1} height={2} />
-        <div>
-          <div id="product-card"></div>
-          <div id="product-card"></div>
-          <div id="product-card"></div>
+        <div className="grid grid-cols-3 gap-6 mt-6">
+          {products.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
         </div>
       </main>
       <footer className={styles.footer}>WDD430 - Handcrafted Haven</footer>
