@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import styles from './page.module.css';
-import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -29,10 +28,6 @@ export default function Home() {
           <div id="product-card"></div>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        WDD430 - Handcrafted Haven
-      </footer>
     </div>
   );
 }
