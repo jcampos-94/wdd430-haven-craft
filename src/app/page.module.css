@@ -7,26 +7,41 @@
   --button-secondary-hover: #f2f2f2;
 
   display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
+  grid-template-rows: auto 1fr auto;
   min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+  padding: 40px;
+  gap: 32px;
+  font-family: var(--font-body, 'Lato', sans-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
+/* NAV */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: var(--accent);
+  color: #fff;
+  padding: 10px 20px;
+  font-family: var(--font-body, 'Lato', sans-serif);
 }
 
+.nav h1 {
+  font-size: 24px;
+  font-family: var(--font-heading, 'IM Fell DW Pica', serif);
+}
+
+.navLinks {
+  display: flex;
+  gap: 16px;
+}
+
+.navLinks a {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* MAIN */
 .main {
   display: flex;
   flex-direction: column;
@@ -56,6 +71,20 @@
   font-weight: 600;
 }
 
+/* FOOTER */
+.footer {
+  grid-row-start: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-body, 'Lato', sans-serif);
+  font-size: 14px;
+}
+
+/* Buttons */
 .ctas {
   display: flex;
   gap: 16px;
@@ -91,23 +120,7 @@ a.secondary {
   min-width: 158px;
 }
 
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
-  flex-shrink: 0;
-}
-
-/* Enable hover only on non-touch devices */
+/* Hover effects */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
     background: var(--button-primary-hover);
@@ -125,9 +138,10 @@ a.secondary {
   }
 }
 
+/* Responsive */
 @media (max-width: 600px) {
   .page {
-    padding: 32px;
+    padding: 20px;
     padding-bottom: 80px;
   }
 
@@ -151,6 +165,11 @@ a.secondary {
 
   a.secondary {
     min-width: auto;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .footer {
