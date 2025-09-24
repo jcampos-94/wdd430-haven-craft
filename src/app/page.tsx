@@ -6,9 +6,9 @@ export default function Home() {
     <main className={styles.main}>
       {/* <Image alt="" src="" width={1} height={2} /> */}
       <div>
-        <div id="product-card"></div>
-        <div id="product-card"></div>
-        <div id="product-card"></div>
+        <div className="product-card"></div>
+        <div className="product-card"></div>
+        <div className="product-card"></div>
       </div>
     </main>
   );
