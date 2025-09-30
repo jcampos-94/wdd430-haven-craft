@@ -120,6 +120,24 @@ a.secondary {
   min-width: 158px;
 }
 
+/* SKELETON (shimmer) */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.08) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s infinite linear;
+}
+
+@keyframes skeleton-loading {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
 /* Hover effects */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
@@ -182,5 +200,76 @@ a.secondary {
 @media (prefers-color-scheme: dark) {
   .logo {
     filter: invert();
+  }
+}
+
+/* HERO */
+.hero {
+  background-image: url("/hero.png");
+  background-size: cover;
+  background-position: center; /* Center position */
+  border-radius: 12px;
+
+  width: 100%;
+  max-width: 1200px; 
+  height: 400px;
+  margin: 0 auto; /* keep it in the center X */
+}
+
+.heroText {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 250px; 
+    background-position: center right; 
+  }
+
+  .heroText h1 {
+    font-size: 20px;
+  }
+
+  .heroText p {
+    font-size: 14px;
+  }
+}
+
+/* PRODUCTS GRID */
+.products {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* 1 col en mobile */
+  gap: 24px;
+  max-width: 1200px;
+  margin: 24px auto 0;   /* Center el grid */
+  padding: 0 16px;       /* The space lateral */
+}
+
+@media (min-width: 768px) {
+  .products {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 cols en md+ */
+  }
+}
+
+.productCard {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 16px 20px;
+  min-height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+/* efecto hover */
+@media (hover: hover) and (pointer: fine) {
+  .productCard:hover {
+    transform: translateY(-2px);
+    transition: transform .2s ease;
   }
 }
