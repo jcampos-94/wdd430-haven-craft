@@ -1,0 +1,109 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Title */
+.title {
+  text-align: center;
+  font-size: clamp(2.5rem, 2vw + 0.5rem, 3rem);
+  margin-bottom: 2rem;
+}
+
+/* Flex layout for desktop */
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Image container */
+.imageWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.imageWrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.desktopImage {
+  display: block;
+}
+
+.mobileImage {
+  display: none;
+}
+
+/* Info section */
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.description {
+  margin-top: 3rem;
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: clamp(1.75rem, 1.5vw + 0.5rem, 2rem);
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+/* Button */
+.button {
+  align-self: center;
+  padding: 0.75rem 2rem;
+  font-size: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
+  font-weight: bold;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: #308465;
+}
+
+/* 📱 Responsive: stack vertically */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .description {
+    margin-top: 0;
+  }
+
+  .button {
+    margin-top: 1rem;
+  }
+}
