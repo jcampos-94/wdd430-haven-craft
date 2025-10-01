@@ -1,7 +1,3 @@
-export default function SearchPage() {
-  return (
-    <div>
-      <h1>Search Page</h1>
-    </div>
-  );
+export default function Page() {
+  return <h1>Search Works</h1>;
 }
