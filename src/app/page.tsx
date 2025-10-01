@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
+import ProductCard from "./components/ProductCard";
+import { products } from "./data/products";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -39,15 +41,20 @@ export default function Home() {
 
       {/* PRODUCTS GRID: u(use classess and mesures)*/}
       <section className={styles.products}>
-        {Array.from({ length: 3 }).map((_, i) =>
-          loading ? (
-            <div key={i} className={`${styles.productCard} ${styles.skeleton}`} />
-          ) : (
-            <div key={i} className={styles.productCard}>
-              Product {i + 1}
+        <div className={styles.productsRow}>
+          {products.map((p) => (
+            <div key={p.id} className={styles.productCard}>
+              <img src={p.image} alt={p.name} className={styles.productImage} />
+              <h2 className={styles.productName}>{p.name}</h2>
+              <p className={styles.productPrice}>{p.price}</p>
+              <p className={styles.productRating}>⭐ {p.rating}</p>
+              <p className={styles.productReview}>{p.review}</p>
+              <p className={styles.productMeta}>
+                – {p.reviewer}, {p.date}
+              </p>
             </div>
-          )
-        )}
+          ))}
+        </div>
       </section>
     </main>
   );
