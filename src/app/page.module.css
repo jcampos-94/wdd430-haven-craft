@@ -96,10 +96,7 @@
   height: 48px;
   padding: 0 20px;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -123,6 +120,7 @@ a.secondary {
 /* Product Review */
 .productsRow {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: flex-start;
   gap: 24px;
@@ -197,8 +195,12 @@ a.secondary {
 }
 
 @keyframes skeleton-loading {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Hover effects */
@@ -268,13 +270,13 @@ a.secondary {
 
 /* HERO */
 .hero {
-  background-image: url("/hero.png");
+  background-image: url('/hero.png');
   background-size: cover;
   background-position: center; /* Center position */
   border-radius: 12px;
 
   width: 100%;
-  max-width: 1200px; 
+  max-width: 1200px;
   height: 400px;
   margin: 0 auto; /* keep it in the center X */
 }
@@ -286,8 +288,8 @@ a.secondary {
 
 @media (max-width: 768px) {
   .hero {
-    height: 250px; 
-    background-position: center right; 
+    height: 250px;
+    background-position: center right;
   }
 
   .heroText h1 {
@@ -299,40 +301,26 @@ a.secondary {
   }
 }
 
-/* PRODUCTS GRID */
-.products {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr)); /* 1 col en mobile */
-  gap: 24px;
-  max-width: 1200px;
-  margin: 24px auto 0;   /* Center el grid */
-  padding: 0 16px;       /* The space lateral */
-}
-
 @media (min-width: 768px) {
-  .products {
-    grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 cols en md+ */
+  .productCard {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 16px 20px;
+    min-height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
   }
-}
 
-.productCard {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 16px 20px;
-  min-height: 120px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;
-}
-
-/* efecto hover */
-@media (hover: hover) and (pointer: fine) {
-  .productCard:hover {
-    transform: translateY(-2px);
-    transition: transform .2s ease;
+  /* efecto hover */
+  @media (hover: hover) and (pointer: fine) {
+    .productCard:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease;
+    }
   }
 }

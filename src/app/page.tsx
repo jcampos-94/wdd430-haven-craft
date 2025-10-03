@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import styles from "./page.module.css";
-import ProductCard from "./components/ProductCard";
-import { products } from "./data/products";
+import { useEffect, useState } from 'react';
+import styles from './page.module.css';
+import { products } from './data/products';
+import Image from 'next/image';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // mimic the loading time 
+    // mimic the loading time
     const t = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(t);
   }, []);
@@ -27,8 +27,24 @@ export default function Home() {
         <div className={styles.heroText}>
           {loading ? (
             <>
-              <div className={styles.skeleton} style={{ width: 260, height: 24, margin: "12px auto 8px", borderRadius: 8 }} />
-              <div className={styles.skeleton} style={{ width: 320, height: 16, margin: "0 auto", borderRadius: 8 }} />
+              <div
+                className={styles.skeleton}
+                style={{
+                  width: 260,
+                  height: 24,
+                  margin: '12px auto 8px',
+                  borderRadius: 8,
+                }}
+              />
+              <div
+                className={styles.skeleton}
+                style={{
+                  width: 320,
+                  height: 16,
+                  margin: '0 auto',
+                  borderRadius: 8,
+                }}
+              />
             </>
           ) : (
             <>
@@ -44,7 +60,13 @@ export default function Home() {
         <div className={styles.productsRow}>
           {products.map((p) => (
             <div key={p.id} className={styles.productCard}>
-              <img src={p.image} alt={p.name} className={styles.productImage} />
+              <Image
+                src={p.image}
+                alt={p.name}
+                className={styles.productImage}
+                width={100}
+                height={100}
+              />
               <h2 className={styles.productName}>{p.name}</h2>
               <p className={styles.productPrice}>{p.price}</p>
               <p className={styles.productRating}>⭐ {p.rating}</p>
