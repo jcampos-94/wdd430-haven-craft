@@ -78,6 +78,66 @@
   background: #308465;
 }
 
+.reviewSection {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.reviewForm label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.reviewForm input,
+.reviewForm textarea,
+.reviewForm select {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.submitButton {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #0059c1;
+}
+
+.reviewsList {
+  margin-top: 2rem;
+}
+
+.reviewCard {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.reviewCard p {
+  margin: 0.3rem 0;
+}
+
+
 /* 📱 Responsive: stack vertically */
 @media (max-width: 768px) {
   .content {
