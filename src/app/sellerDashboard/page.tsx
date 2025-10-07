@@ -58,7 +58,7 @@ export default function SellerDashboard() {
               Welcome back, Maria’s Handcrafted Jewelry!
             </h1>
             <p className={styles.welcomeText}>
-              Your handcrafted creations inspire many. Here's your shop overview and updates.
+              Your handcrafted creations inspire many. Here&apos;s your shop overview and updates.
             </p>
           </div>
         </header>
@@ -95,7 +95,7 @@ export default function SellerDashboard() {
         {/* Customer Feedback */}
         <section className={styles.feedback}>
           <h2>💬 Customer Feedback</h2>
-          <p>Read reviews or respond to customer messages to improve your shop’s reputation.</p>
+          <p>Read reviews or respond to customer messages to improve your shop&apos;s reputation.</p>
           <form onSubmit={handleSubmit} className={styles.commentForm}>
             <input
               type="text"
