@@ -1,9 +1,14 @@
-import Image from "next/image";
+import Image from "next/image"; 
+import Link from "next/link";
 import { Products } from "../data/products";
 
 export default function ProductCard({ product }: { product: Products }) {
+
   return (
-    <div className="rounded-xl shadow-md p-4 max-w-xs bg-white text-center">
+    <Link
+      href={`/product/${product.id}`}
+      className="rounded-xl shadow-md p-4 max-w-xs bg-white text-center block hover:shadow-lg transition"
+    >
       <Image
         src={product.image}
         alt={product.name}
@@ -18,6 +23,6 @@ export default function ProductCard({ product }: { product: Products }) {
       <p className="text-xs text-gray-500 mt-1">
         – {product.reviewer}, {product.date}
       </p>
-    </div>
+    </Link>
   );
 }

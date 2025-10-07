@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import { products } from './data/products';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -59,7 +60,7 @@ export default function Home() {
       <section className={styles.products}>
         <div className={styles.productsRow}>
           {products.map((p) => (
-            <div key={p.id} className={styles.productCard}>
+            <Link key={p.id} href={`/product/${p.id}`} className={styles.productCard}>
               <Image
                 src={p.image}
                 alt={p.name}
@@ -74,7 +75,7 @@ export default function Home() {
               <p className={styles.productMeta}>
                 – {p.reviewer}, {p.date}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
