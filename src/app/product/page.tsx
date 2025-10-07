@@ -21,7 +21,6 @@ export default function ProductPage() {
       price: 49.99,
       image: "/images/filler_img_small.jpg",
     };
-    // Add to cart in localStorage
     const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
     currentCart.push(newProduct);
     localStorage.setItem("cart", JSON.stringify(currentCart));
