@@ -4,11 +4,12 @@ import { getProductById } from '../../lib/data';
 import CartAndReviews from './CartAndReviews';
 
 interface Params {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function ProductPage({ params }: Params) {
-  const product = await getProductById(params.id);
+  const resolvedParams = await params;
+  const product = await getProductById(resolvedParams.id);
 
   if (!product) return <p>Product not found</p>;
 
