@@ -50,13 +50,19 @@ export async function GET() {
         ('Liam Torres', 'liam@haven.com', 'Guadalajara, Mexico', '/images/sellers/liam.jpg'),
         ('Sofia Chen', 'sofia@haven.com', 'Tainan, Taiwan', '/images/sellers/sofia.jpg'),
         ('Noah Patel', 'noah@haven.com', 'Kolkotta, India', '/images/sellers/noah.jpg'),
-        ('Emma Johnson', 'emma@haven.com', 'Hartford, USA', '/images/sellers/emma.jpg');
+        ('Emma Johnson', 'emma@haven.com', 'Hartford, USA', '/images/sellers/emma.jpg'),
+        ('Sarah Cox', 'sarah@haven.com', 'Utah, USA', '/images/sellers/sarah.jpg'),
+        ('Maria Santos', 'maria@haven.com', 'Cebu, Philippines', '/images/sellers/maria.jpg'),
+        ('Aisha Aliezar', 'aisha@haven.com', 'Marrakesh, Morocco', '/images/sellers/aisha.jpg');
     `;
 
     // Insert products (at least 10)
     await sql`
       INSERT INTO products (name, price, image_url, description, seller_id, category_id)
       VALUES 
+        ('Origami Cranes', 8.00, '/images/origami.jpg', 'Unique origami piece to decorate spaces', 6, 7),
+        ('Wool Poncho', 45.00, '/images/poncho.jpg', 'Warm wool poncho with intricate designs', 7, 2),
+        ('Carved Wooden Owl', 38.00, '/images/owl.jpg', 'Beautiful life size carved wooden owl', 8, 5),
         ('Handmade Silver Earrings', 45.00, '/images/earrings.jpg', 'Elegant silver earrings with delicate patterns', 1, 1),
         ('Woven Wall Hanging', 60.00, '/images/wallhanging.jpg', 'Colorful woven wall hanging for your living room', 1, 7),
         ('Clay Vase', 55.00, '/images/vase.jpg', 'Handmade clay vase perfect for flowers', 2, 4),
