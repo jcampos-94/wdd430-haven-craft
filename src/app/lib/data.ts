@@ -44,8 +44,13 @@ export async function getSellerProducts(sellerId: number) {
 
 // Get all sellers
 export async function getSellers() {
-  const { rows } = await sql`SELECT * FROM sellers;`;
-  return rows;
+  try{
+    const { rows } = await sql`SELECT * FROM sellers;`;
+    return rows;
+  } catch (error) {
+    console.error("Error fetching sellers:", error);
+    throw new Error("Failed to fetch sellers data");
+  }
 }
 
 // Get seller by ID
