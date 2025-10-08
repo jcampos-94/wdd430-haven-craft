@@ -117,6 +117,28 @@ a.secondary {
   min-width: 158px;
 }
 
+/* Browsing Filters */
+.filters{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: var(--accent);
+  padding: 1rem 2rem;
+}
+
+.filterCategory{
+  padding: 10px;
+}
+
+.filterLabel{
+  color: white;
+}
+
+.filterSelect{
+  background-color: whitesmoke;
+  color: black;
+}
+
 /* Product Preview */
 .productsRow {
   display: flex;
@@ -129,7 +151,7 @@ a.secondary {
 }
 
 .productCard {
-  background: #fff;
+  background-color: #e9ffed !important;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 16px;

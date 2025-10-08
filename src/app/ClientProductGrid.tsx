@@ -40,9 +40,9 @@ export default function ClientProductGrid({ products }: ClientProductGridProps) 
     <div>
       {/* FILTER BAR */}
       <section className={styles.filters}>
-        <div>
-          <label>Seller:</label>
-          <select value={selectedSeller} onChange={(e) => setSelectedSeller(e.target.value)}>
+        <div className={styles.filterCategory}>
+          <label className={styles.filterLabel}>Seller: </label>
+          <select className={styles.filterSelect} value={selectedSeller} onChange={(e) => setSelectedSeller(e.target.value)}>
             <option value="">All</option>
             {sellers.map((s) => (
               <option key={s} value={s}>{s}</option>
@@ -50,9 +50,9 @@ export default function ClientProductGrid({ products }: ClientProductGridProps) 
           </select>
         </div>
 
-        <div>
-          <label>Category:</label>
-          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+        <div className={styles.filterCategory}>
+          <label className={styles.filterLabel}>Category: </label>
+          <select className={styles.filterSelect} value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
             <option value="">All</option>
             {categories.map((c) => (
               <option key={c} value={c}>{c}</option>
