@@ -13,7 +13,8 @@ export async function GET() {
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
         location VARCHAR(255),
-        profile_image TEXT
+        profile_image TEXT,
+        craft TEXT
       );
     `;
 
@@ -44,19 +45,25 @@ export async function GET() {
 
     // Insert sellers
     await sql`
-      INSERT INTO sellers (name, email, location, profile_image)
+      INSERT INTO sellers (name, email, location, profile_image, craft)
       VALUES 
-        ('Ana Rivera', 'ana@haven.com', 'Granada, Spain', '/images/sellers/ana.jpg'),
-        ('Liam Torres', 'liam@haven.com', 'Guadalajara, Mexico', '/images/sellers/liam.jpg'),
-        ('Sofia Chen', 'sofia@haven.com', 'Tainan, Taiwan', '/images/sellers/sofia.jpg'),
-        ('Noah Patel', 'noah@haven.com', 'Kolkotta, India', '/images/sellers/noah.jpg'),
-        ('Emma Johnson', 'emma@haven.com', 'Hartford, USA', '/images/sellers/emma.jpg');
+        ('Ana Rivera', 'ana@haven.com', 'Granada, Spain', '/images/sellers/ana.jpg', 'Ceramic Pottery'),
+        ('Liam Torres', 'liam@haven.com', 'Guadalajara, Mexico', '/images/sellers/liam.jpg', 'Leather Craft'),
+        ('Sofia Chen', 'sofia@haven.com', 'Tainan, Taiwan', '/images/sellers/sofia.jpg', 'Textile Weaving'),
+        ('Noah Patel', 'noah@haven.com', 'Kolkotta, India', '/images/sellers/noah.jpg', 'Ceramic Pottery'),
+        ('Emma Johnson', 'emma@haven.com', 'Hartford, USA', '/images/sellers/emma.jpg', 'Jewelry Making'),
+        ('Sarah Cox', 'sarah@haven.com', 'Utah, USA', '/images/sellers/sarah.jpg', 'Ceramic Pottery'),
+        ('Maria Santos', 'maria@haven.com', 'Cebu, Philippines', '/images/sellers/maria.jpg', 'Textile Weaving'),
+        ('Aisha Aliezar', 'aisha@haven.com', 'Marrakesh, Morocco', '/images/sellers/aisha.jpg', 'Jewelry Making');
     `;
 
     // Insert products (at least 10)
     await sql`
       INSERT INTO products (name, price, image_url, description, seller_id, category_id)
       VALUES 
+        ('Origami Cranes', 8.00, '/images/origami.jpg', 'Unique origami piece to decorate spaces', 6, 7),
+        ('Wool Poncho', 45.00, '/images/poncho.jpg', 'Warm wool poncho with intricate designs', 7, 2),
+        ('Carved Wooden Owl', 38.00, '/images/owl.jpg', 'Beautiful life size carved wooden owl', 8, 5),
         ('Handmade Silver Earrings', 45.00, '/images/earrings.jpg', 'Elegant silver earrings with delicate patterns', 1, 1),
         ('Woven Wall Hanging', 60.00, '/images/wallhanging.jpg', 'Colorful woven wall hanging for your living room', 1, 7),
         ('Clay Vase', 55.00, '/images/vase.jpg', 'Handmade clay vase perfect for flowers', 2, 4),

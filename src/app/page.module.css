@@ -117,7 +117,29 @@ a.secondary {
   min-width: 158px;
 }
 
-/* Product Review */
+/* Browsing Filters */
+.filters{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: var(--accent);
+  padding: 1rem 2rem;
+}
+
+.filterCategory{
+  padding: 10px;
+}
+
+.filterLabel{
+  color: white;
+}
+
+.filterSelect{
+  background-color: whitesmoke;
+  color: black;
+}
+
+/* Product Preview */
 .productsRow {
   display: flex;
   flex-direction: row;
@@ -129,7 +151,7 @@ a.secondary {
 }
 
 .productCard {
-  background: #fff;
+  background-color: #e9ffed !important;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 16px;
@@ -160,6 +182,11 @@ a.secondary {
   font-weight: 600;
   color: #009688;
   margin-top: 4px;
+}
+
+.productSeller {
+  margin-top: 2rem;
+  color: #333
 }
 
 .productRating {
