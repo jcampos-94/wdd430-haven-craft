@@ -1,80 +1,37 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import styles from './page.module.css';
-import { products } from './data/products';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getProducts } from './lib/data';
 
-export default function Home() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // mimic the loading time
-    const t = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(t);
-  }, []);
+export default async function Home() {
+  const products = await getProducts();
 
   return (
     <main className={styles.main}>
-      {/* HERO: loading class*/}
+      {/* HERO */}
       <section>
-        {loading ? (
-          <div className={`${styles.hero} ${styles.skeleton}`} />
-        ) : (
-          <div className={styles.hero} />
-        )}
-
+        <div className={styles.hero} />
         <div className={styles.heroText}>
-          {loading ? (
-            <>
-              <div
-                className={styles.skeleton}
-                style={{
-                  width: 260,
-                  height: 24,
-                  margin: '12px auto 8px',
-                  borderRadius: 8,
-                }}
-              />
-              <div
-                className={styles.skeleton}
-                style={{
-                  width: 320,
-                  height: 16,
-                  margin: '0 auto',
-                  borderRadius: 8,
-                }}
-              />
-            </>
-          ) : (
-            <>
-              <h1>Handcrafted Haven</h1>
-              <p>Unique, handcrafted creations await.</p>
-            </>
-          )}
+          <h1>Handcrafted Haven</h1>
+          <p>Unique, handcrafted creations await.</p>
         </div>
       </section>
 
-      {/* PRODUCTS GRID: u(use classess and mesures)*/}
+      {/* PRODUCTS GRID */}
       <section className={styles.products}>
         <div className={styles.productsRow}>
           {products.map((p) => (
             <Link key={p.id} href={`/product/${p.id}`} className={styles.productCard}>
               <Image
-                src={p.image}
+                src={p.image_url}
                 alt={p.name}
                 className={styles.productImage}
                 width={100}
                 height={100}
               />
               <h2 className={styles.productName}>{p.name}</h2>
-              <p className={styles.productPrice}>{p.price}</p>
-              <p className={styles.productRating}>⭐ {p.rating}</p>
-              <p className={styles.productReview}>{p.review}</p>
-              <p className={styles.productMeta}>
-                – {p.reviewer}, {p.date}
-              </p>
+              <p className={styles.productPrice}>${p.price}</p>
+              <p className={styles.productSeller}>By {p.seller_name}</p>
             </Link>
           ))}
         </div>

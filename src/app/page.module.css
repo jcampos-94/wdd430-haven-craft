@@ -117,7 +117,7 @@ a.secondary {
   min-width: 158px;
 }
 
-/* Product Review */
+/* Product Preview */
 .productsRow {
   display: flex;
   flex-direction: row;
@@ -160,6 +160,11 @@ a.secondary {
   font-weight: 600;
   color: #009688;
   margin-top: 4px;
+}
+
+.productSeller {
+  margin-top: 2rem;
+  color: #333
 }
 
 .productRating {

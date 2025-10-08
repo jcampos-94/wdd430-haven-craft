@@ -2,21 +2,26 @@ import { sql } from "@vercel/postgres";
 
 // Get all products
 export async function getProducts() {
-  const { rows } = await sql`
-    SELECT 
-      products.id,
-      products.name,
-      products.description,
-      products.price,
-      products.category,
-      products.image_url,
-      sellers.name AS seller_name,
-      sellers.profile_image AS seller_image,
-      sellers.location AS seller_location
-    FROM products
-    JOIN sellers ON products.seller_id = sellers.id;
-  `;
-  return rows;
+  try {
+    const { rows } = await sql`
+      SELECT 
+        products.id,
+        products.name,
+        products.description,
+        products.price,
+        products.image_url,
+        sellers.name AS seller_name,
+        categories.name AS category_name
+      FROM products
+      LEFT JOIN categories ON products.category_id = categories.id
+      LEFT JOIN sellers ON products.seller_id = sellers.id
+      ORDER BY products.id ASC;
+    `;
+    return rows;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw new Error('Failed to fetch products');
+  }
 }
 
 // Get single product by ID
