@@ -1,0 +1,169 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Title */
+.title {
+  text-align: center;
+  font-size: clamp(2.5rem, 2vw + 0.5rem, 3rem);
+  margin-bottom: 2rem;
+}
+
+/* Flex layout for desktop */
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Image container */
+.imageWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.imageWrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.desktopImage {
+  display: block;
+}
+
+.mobileImage {
+  display: none;
+}
+
+/* Info section */
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.description {
+  margin-top: 3rem;
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: clamp(1.75rem, 1.5vw + 0.5rem, 2rem);
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+/* Button */
+.button {
+  align-self: center;
+  padding: 0.75rem 2rem;
+  font-size: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
+  font-weight: bold;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: #308465;
+}
+
+.reviewSection {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.reviewForm label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.reviewForm input,
+.reviewForm textarea,
+.reviewForm select {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.submitButton {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+  background-color: #0059c1;
+}
+
+.reviewsList {
+  margin-top: 2rem;
+}
+
+.reviewCard {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.reviewCard p {
+  margin: 0.3rem 0;
+}
+
+
+/* 📱 Responsive: stack vertically */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .description {
+    margin-top: 0;
+  }
+
+  .button {
+    margin-top: 1rem;
+  }
+}

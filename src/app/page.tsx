@@ -1,13 +1,16 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import styles from "./page.module.css";
+import { useEffect, useState } from 'react';
+import styles from './page.module.css';
+import { products } from './data/products';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // mimic the loading time 
+    // mimic the loading time
     const t = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(t);
   }, []);
@@ -25,8 +28,24 @@ export default function Home() {
         <div className={styles.heroText}>
           {loading ? (
             <>
-              <div className={styles.skeleton} style={{ width: 260, height: 24, margin: "12px auto 8px", borderRadius: 8 }} />
-              <div className={styles.skeleton} style={{ width: 320, height: 16, margin: "0 auto", borderRadius: 8 }} />
+              <div
+                className={styles.skeleton}
+                style={{
+                  width: 260,
+                  height: 24,
+                  margin: '12px auto 8px',
+                  borderRadius: 8,
+                }}
+              />
+              <div
+                className={styles.skeleton}
+                style={{
+                  width: 320,
+                  height: 16,
+                  margin: '0 auto',
+                  borderRadius: 8,
+                }}
+              />
             </>
           ) : (
             <>
@@ -39,15 +58,26 @@ export default function Home() {
 
       {/* PRODUCTS GRID: u(use classess and mesures)*/}
       <section className={styles.products}>
-        {Array.from({ length: 3 }).map((_, i) =>
-          loading ? (
-            <div key={i} className={`${styles.productCard} ${styles.skeleton}`} />
-          ) : (
-            <div key={i} className={styles.productCard}>
-              Product {i + 1}
-            </div>
-          )
-        )}
+        <div className={styles.productsRow}>
+          {products.map((p) => (
+            <Link key={p.id} href={`/product/${p.id}`} className={styles.productCard}>
+              <Image
+                src={p.image}
+                alt={p.name}
+                className={styles.productImage}
+                width={100}
+                height={100}
+              />
+              <h2 className={styles.productName}>{p.name}</h2>
+              <p className={styles.productPrice}>{p.price}</p>
+              <p className={styles.productRating}>⭐ {p.rating}</p>
+              <p className={styles.productReview}>{p.review}</p>
+              <p className={styles.productMeta}>
+                – {p.reviewer}, {p.date}
+              </p>
+            </Link>
+          ))}
+        </div>
       </section>
     </main>
   );

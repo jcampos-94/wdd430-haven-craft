@@ -41,6 +41,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Stephanie Dacullo Selanoba
 - Juan Alonso Campos Guerra
 - Gabriela Elizabeth Rivera
-- Raphael Dotse
 - Jaime Santiago Herrera David
 - Jose Pablo Arizandieta

@@ -1,12 +1,17 @@
 'use client';
 
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import styles from './ProductPage.module.css';
-import { useRouter } from 'next/navigation';
+import styles from '../ProductPage.module.css';
+import { products } from '../../data/products';
 import { useState } from 'react';
 
 export default function ProductPage() {
+  const { id } = useParams(); // obtiene el ID dinámico de la URL
   const router = useRouter();
+
+  // busca el producto por id
+  const product = products.find((p) => p.id.toString() === id);
 
   const [rating, setRating] = useState<number>(0);
   const [review, setReview] = useState('');
@@ -15,71 +20,55 @@ export default function ProductPage() {
     { rating: number; review: string; reviewer: string; date: string }[]
   >([]);
 
+  if (!product) {
+    return <p>Product not found</p>;
+  }
+
   const handleAddToCart = () => {
-    const newProduct = {
-      name: "Wooden Owl",
-      price: 49.99,
-      image: "/images/filler_img_small.jpg",
-    };
     const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    currentCart.push(newProduct);
+    currentCart.push(product);
     localStorage.setItem("cart", JSON.stringify(currentCart));
     router.push("/cart");
   };
 
   const handleSubmitReview = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!rating || !review || !reviewer) {
       alert("Please complete all fields before submitting your review.");
       return;
     }
-
     const newReview = {
       rating,
       review,
       reviewer,
       date: new Date().toLocaleDateString(),
-    }
-
+    };
     setReviews((prev) => [...prev, newReview]);
     setRating(0);
     setReview('');
     setReviewer('');
   };
 
-
-
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Wooden Owl</h1>
+      <h1 className={styles.title}>{product.name}</h1>
 
       <div className={styles.content}>
         {/* Left: Image */}
         <div className={styles.imageWrapper}>
           <Image
-            src="/images/filler_img_large.jpg"
-            alt="Image of a Wooden Owl"
+            src={product.image}
+            alt={`Image of ${product.name}`}
             width={334}
-            height={1000}
+            height={400}
             className={styles.desktopImage}
-          />
-          <Image
-            src="/images/filler_img_small.jpg"
-            alt="Image of a Wooden Owl"
-            width={167}
-            height={250}
-            className={styles.mobileImage}
           />
         </div>
 
         {/* Right: Info */}
         <div className={styles.info}>
-          <p className={styles.description}>
-            A beautifully crafted wooden owl, handmade from sustainable wood.
-            Perfect for as a decorative piece on bedrooms and studies.
-          </p>
-          <p className={styles.price}>$49.99</p>
+          <p className={styles.description}>{product.description}</p>
+          <p className={styles.price}>{product.price}</p>
           <button className={styles.button} onClick={handleAddToCart}>
             Add to Cart
           </button>
