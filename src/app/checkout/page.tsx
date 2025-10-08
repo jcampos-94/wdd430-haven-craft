@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 export default function Checkout() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Usamos setTimeout solo para simular carga; en tu app ocurrirá cuando los datos lleguen
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
