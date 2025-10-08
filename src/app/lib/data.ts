@@ -25,18 +25,31 @@ export async function getProducts() {
 }
 
 // Get single product by ID
-export async function getProductById(id: number) {
-  const { rows } = await sql`
-    SELECT 
-      products.*,
-      sellers.name AS seller_name,
-      sellers.profile_image AS seller_image,
-      sellers.location AS seller_location
-    FROM products
-    JOIN sellers ON products.seller_id = sellers.id
-    WHERE products.id = ${id};
-  `;
-  return rows[0];
+export async function getProductById(id: string) {
+  try {
+    const { rows } = await sql`
+      SELECT
+        products.id,
+        products.name,
+        products.description,
+        products.price,
+        products.image_url,
+        sellers.name AS seller_name,
+        categories.name AS category_name
+      FROM products
+      LEFT JOIN sellers ON products.seller_id = sellers.id
+      LEFT JOIN categories ON products.category_id = categories.id
+      WHERE products.id = ${id}
+      LIMIT 1;
+    `;
+
+    if (rows.length === 0) return null;
+
+    return rows[0];
+  } catch (error) {
+    console.error('Error fetching product by ID:', error);
+    return null;
+  }
 }
 
 // Get all products from one seller
