@@ -6,6 +6,8 @@
 /* Headings: IM Fell DW Pica */
 /* Paragraphs: Lato */
 
+@import "tailwindcss";
+
 :root {
   --background: #D8F3DC;
   /* Nyanza */
