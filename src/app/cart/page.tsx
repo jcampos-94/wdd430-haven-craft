@@ -15,7 +15,14 @@ export default function CartPage() {
   // Load cart from localStorage
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCart(storedCart);
+
+    // 🔧 Convert prices to numbers
+    const numericCart = storedCart.map((item: any) => ({
+      ...item,
+      price: Number(item.price),
+    }));
+
+    setCart(numericCart);
   }, []);
 
   // Remove one item from cart
@@ -48,7 +55,10 @@ export default function CartPage() {
 
               <div className={styles.itemInfo}>
                 <h3 className={styles.itemName}>{p.name}</h3>
-                <p className={styles.itemPrice}>Price: ${p.price.toFixed(2)}</p>
+                {/* ✅ Convert price to number safely */}
+                <p className={styles.itemPrice}>
+                  Price: ${Number(p.price).toFixed(2)}
+                </p>
                 <button
                   onClick={() => handleRemove(index)}
                   className={styles.removeBtn}

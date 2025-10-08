@@ -3,8 +3,9 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../profile.module.css";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 
-export default function SellerDashboard() {
+function SellerDashboard() {
   const [comments, setComments] = useState<string[]>([]);
   const [input, setInput] = useState("");
 
@@ -129,3 +130,13 @@ export default function SellerDashboard() {
     </section>
   );
 }
+
+function SellerDashboardPage() {
+  return (
+    <ProtectedRoute>
+      <SellerDashboard />
+    </ProtectedRoute>
+  );
+}
+
+export default SellerDashboardPage;
