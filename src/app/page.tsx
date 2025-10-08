@@ -1,10 +1,11 @@
 import styles from './page.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getProducts } from './lib/data';
+import { getProducts, Product } from './lib/data';
+import ClientProductGrid from './ClientProductGrid';
 
 export default async function Home() {
-  const products = await getProducts();
+  const products: Product[] = await getProducts();
 
   return (
     <main className={styles.main}>
@@ -17,25 +18,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* PRODUCTS GRID */}
-      <section className={styles.products}>
-        <div className={styles.productsRow}>
-          {products.map((p) => (
-            <Link key={p.id} href={`/product/${p.id}`} className={styles.productCard}>
-              <Image
-                src={p.image_url}
-                alt={p.name}
-                className={styles.productImage}
-                width={100}
-                height={100}
-              />
-              <h2 className={styles.productName}>{p.name}</h2>
-              <p className={styles.productPrice}>${p.price}</p>
-              <p className={styles.productSeller}>By {p.seller_name}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {/* PRODUCTS SECTION */}
+      <ClientProductGrid products={products} />;
     </main>
   );
 }

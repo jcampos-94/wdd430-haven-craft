@@ -1,7 +1,17 @@
 import { sql } from "@vercel/postgres";
 
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+  seller_name: string;
+  category_name: string;
+}
+
 // Get all products
-export async function getProducts() {
+export async function getProducts(): Promise<Product[]> {
   try {
     const { rows } = await sql`
       SELECT 
@@ -17,7 +27,7 @@ export async function getProducts() {
       LEFT JOIN sellers ON products.seller_id = sellers.id
       ORDER BY products.id ASC;
     `;
-    return rows;
+    return rows as Product[];
   } catch (error) {
     console.error('Error fetching products:', error);
     throw new Error('Failed to fetch products');
