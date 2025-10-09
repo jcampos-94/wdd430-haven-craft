@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '../ProductPage.module.css';
+import styles from './ProductPage.module.css';
 
 export default function CartAndReviews({ product }: { product: any }) {
   const router = useRouter();

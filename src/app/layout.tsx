@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { IM_Fell_DW_Pica, Lato } from 'next/font/google';
 import './globals.css';
 import styles from './page.module.css';
-import Link from 'next/link';
-import Image from 'next/image';
 import { AuthProvider } from './components/AuthProvider';
 import { Navigation } from './components/Navigation';
 

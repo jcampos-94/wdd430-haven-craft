@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from '../ProductPage.module.css';
+import styles from './ProductPage.module.css';
 import { getProductById } from '../../lib/data';
 import CartAndReviews from './CartAndReviews';
 
