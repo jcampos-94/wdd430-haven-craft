@@ -32,7 +32,7 @@ function SellerDashboard() {
   return (
     <>
       {/* Main Content */}
-      <main className={styles.main}>
+      <section className={styles.main}>
         <header className={styles.header}>
           <div className={styles.profilePic}>
             <Image
@@ -122,7 +122,7 @@ function SellerDashboard() {
             <button className={styles.greenBtn}>Manage Products</button>
           </Link>
         </div>
-      </main>
+      </section>
     </>
   );
 }

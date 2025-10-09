@@ -17,22 +17,22 @@ export default function DashboardLayout({
           <div>
             <h2 className={styles.sidebarTitle}>Seller Menu</h2>
             <nav className={styles.navLinks}>
-              <Link href="/dashboard" className={styles.navLink}>
+              <Link href="/sellerDashboard" className={styles.navLink}>
                 🏠 Dashboard
               </Link>
-              <Link href="/dashboard/products" className={styles.navLink}>
+              <Link href="/sellerDashboard/products" className={styles.navLink}>
                 🛍️ Products
               </Link>
-              <Link href="/dashboard/orders" className={styles.navLink}>
+              <Link href="/sellerDashboard/orders" className={styles.navLink}>
                 📦 Orders
               </Link>
               <Link
-                href="/dashboard/profile-settings"
+                href="/sellerDashboard/profileSettings"
                 className={styles.navLink}
               >
                 👤 Profile & Settings
               </Link>
-              <Link href="/dashboard/reviews" className={styles.navLink}>
+              <Link href="/sellerDashboard/reviews" className={styles.navLink}>
                 💬 Customer Feedback
               </Link>
             </nav>
@@ -43,7 +43,7 @@ export default function DashboardLayout({
         </aside>
 
         {/* Main Content (Dashboard pages) */}
-        <main className={styles.mainContent}>{children}</main>
+        {children}
       </section>
     </ProtectedRoute>
   );
