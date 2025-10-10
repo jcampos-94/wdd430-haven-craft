@@ -45,13 +45,22 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
 
   return (
     <section className={styles.profileSection}>
-      {/* Artisan Profiles */}
+      {/*Header*/}
       <article className={styles.card}>
-        <h2>👩‍🎨 Artisan Profiles</h2>
+        <div className={styles.headerRow}>
+          <h2>Artisan Profiles</h2>
+          <button
+            onClick={() => setShowSellerForm(true)}
+            className={`${styles.btn} ${styles.primaryBtn}`}
+          >
+            Become a Seller
+          </button>
+        </div>
         <p>
           Meet our talented artisans! Each profile showcases their story, craft,
           and featured items.
         </p>
+
         <div className={styles.grid}>
           {sellers.map((artisan) => (
             <div key={artisan.id} className={styles.artisanCard}>
@@ -59,25 +68,30 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
                 <Image
                   src={artisan.profile_image}
                   alt={artisan.name}
-                  fill
+                  width={400}
+                  height={300}
                   className={styles.image}
                 />
               </div>
               <h3>{artisan.name}</h3>
               <p className={styles.craft}>{artisan.craft}</p>
               <p className={styles.location}>{artisan.location}</p>
+              <Link href={`/sellerDashboard/${artisan.id}`}>
+                <button className={styles.viewBtn}>View Dashboard</button>
+              </Link>
             </div>
           ))}
         </div>
       </article>
 
-      {/* Crafting Process */}
+      {/*Crafting*/}
       <article className={styles.card}>
-        <h2>🛠️ Crafting Process</h2>
+        <h2>Crafting Process</h2>
         <p>
           Every creation begins with carefully sourced materials emphasizing
           sustainability and authenticity.
         </p>
+
         <div className={styles.processGrid}>
           <div>
             <span className={styles.icon}>🌱</span>
@@ -97,10 +111,11 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
         </div>
       </article>
 
-      {/* Customer Engagement */}
+      {/*Cx Engagement*/}
       <article className={styles.card}>
-        <h2>💬 Customer Engagement</h2>
+        <h2>Customer Engagement</h2>
         <p>Share your thoughts or experiences with our artisans!</p>
+
         <form onSubmit={handleSubmit} className={styles.commentForm}>
           <input
             type="text"
@@ -108,8 +123,11 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Write a comment..."
           />
-          <button type="submit">🚀 Post</button>
+          <button type="submit" className={styles.postBtn}>
+            🚀 Post
+          </button>
         </form>
+
         <div className={styles.commentList}>
           {comments.length === 0 ? (
             <p className={styles.noComments}>No comments yet. Be the first!</p>
@@ -124,9 +142,9 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
         </div>
       </article>
 
-      {/* Community Updates */}
+      {/*Community Updates*/}
       <article className={styles.card}>
-        <h2>🌍 Community & Updates</h2>
+        <h2>Community & Updates</h2>
         <ul className={styles.updateList}>
           {updates.map((u, i) => (
             <li key={i}>
@@ -138,15 +156,7 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
         </ul>
       </article>
 
-      {/* Buttons */}
-      <div className={styles.actions}>
-        <button onClick={() => setShowSellerForm(true)}>Become a Seller</button>
-        <Link href="/sellerDashboard">
-          <button className={styles.dashboardBtn}>Seller Dashboard</button>
-        </Link>
-      </div>
-
-      {/* Modal */}
+      {/*Seller Form*/}
       {showSellerForm && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
