@@ -6,7 +6,7 @@ import styles from "./cartPage.module.css";
 interface Product {
   name: string;
   price: number;
-  image: string;
+  image_url: string;
 }
 
 export default function CartPage() {
@@ -46,7 +46,7 @@ export default function CartPage() {
           {cart.map((p, index) => (
             <div key={index} className={styles.cartItem}>
               <Image
-                src={p.image}
+                src={p.image_url}
                 alt={p.name}
                 width={100}
                 height={100}
