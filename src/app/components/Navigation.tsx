@@ -16,7 +16,7 @@ export function Navigation() {
         width={80}
         height={80}
       />
-      <h1>Handcrafted Haven</h1>
+      <h2>Handcrafted Haven</h2>
       <div className={styles.navLinks}>
         <Link href="/" className="hover:underline">
           Home
