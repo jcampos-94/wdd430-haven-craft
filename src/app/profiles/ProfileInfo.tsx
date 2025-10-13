@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import styles from "../profile.module.css";
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from '../profile.module.css';
 
 export default function ProfileInfo({ sellers }: { sellers: any[] }) {
   const [comments, setComments] = useState<string[]>([]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [showSellerForm, setShowSellerForm] = useState(false);
 
   const updates = [
     {
-      title: "New Collection: Autumn Designs",
-      date: "Sept 15, 2025",
-      description: "Discover warm colors and cozy patterns inspired by fall.",
+      title: 'New Collection: Autumn Designs',
+      date: 'Sept 15, 2025',
+      description: 'Discover warm colors and cozy patterns inspired by fall.',
     },
     {
-      title: "Community Workshop",
-      date: "Oct 1, 2025",
+      title: 'Community Workshop',
+      date: 'Oct 1, 2025',
       description:
-        "Join our live crafting session and learn directly from artisans.",
+        'Join our live crafting session and learn directly from artisans.',
     },
     {
-      title: "Collaboration with Local Farmers",
-      date: "Oct 12, 2025",
+      title: 'Collaboration with Local Farmers',
+      date: 'Oct 12, 2025',
       description:
-        "Supporting sustainability with locally sourced raw materials.",
+        'Supporting sustainability with locally sourced raw materials.',
     },
   ];
 
@@ -34,13 +34,13 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
     e.preventDefault();
     if (!input.trim()) return;
     setComments([input, ...comments]);
-    setInput("");
+    setInput('');
   };
 
   const handleSellerSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setShowSellerForm(false);
-    alert("Your seller application has been submitted!");
+    alert('Your seller application has been submitted!');
   };
 
   return (
@@ -48,7 +48,7 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
       {/*Header*/}
       <article className={styles.card}>
         <div className={styles.headerRow}>
-          <h2>Artisan Profiles</h2>
+          <h1>Artisan Profiles</h1>
           <button
             onClick={() => setShowSellerForm(true)}
             className={`${styles.btn} ${styles.primaryBtn}`}

@@ -24,9 +24,10 @@
   color: #fff;
   padding: 10px 20px;
   font-family: var(--font-body, 'Lato', sans-serif);
+  border-radius: 7px;
 }
 
-.nav h1 {
+.nav h2 {
   font-size: 24px;
   font-family: var(--font-heading, 'IM Fell DW Pica', serif);
 }
@@ -71,19 +72,6 @@
   font-weight: 600;
 }
 
-/* FOOTER */
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: var(--accent);
-  color: #ffffff;
-  font-family: var(--font-body, 'Lato', sans-serif);
-  font-size: 14px;
-}
-
 /* Buttons */
 .ctas {
   display: flex;
@@ -121,9 +109,10 @@ a.secondary {
 .filters{
   display: flex;
   justify-content: center;
-  margin: 0 auto;
+  margin: 10px auto;
   background-color: var(--accent);
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
+  border-radius: 7px;
 }
 
 .filterCategory{
@@ -137,6 +126,7 @@ a.secondary {
 .filterSelect{
   background-color: whitesmoke;
   color: black;
+  border-radius: 5px;
 }
 
 /* Product Preview */
@@ -297,7 +287,7 @@ a.secondary {
 
 /* HERO */
 .hero {
-  background-image: url('/hero.png');
+  background-image: url('/hero.webp');
   background-size: cover;
   background-position: center; /* Center position */
   border-radius: 12px;
@@ -320,7 +310,7 @@ a.secondary {
   }
 
   .heroText h1 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .heroText p {
@@ -341,6 +331,10 @@ a.secondary {
     justify-content: center;
     text-align: center;
     color: #fff;
+  }
+
+  .heroText h1 {
+    font-size: 24px;
   }
 
   /* efecto hover */
