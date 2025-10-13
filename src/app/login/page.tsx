@@ -19,7 +19,7 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Log In</h2>
+      <h1 className={styles.title}>Log In</h1>
 
       {/* GitHub Authentication */}
       <div>
