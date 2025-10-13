@@ -6,7 +6,7 @@ import styles from "./cartPage.module.css";
 interface Product {
   name: string;
   price: number;
-  image: string;
+  image_url: string;
 }
 
 export default function CartPage() {
@@ -37,7 +37,7 @@ export default function CartPage() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>🛒 Your Cart</h2>
+      <h1 className={styles.title}>🛒 Your Cart</h1>
 
       {cart.length === 0 ? (
         <p className={styles.empty}>Your cart is empty.</p>
@@ -46,7 +46,7 @@ export default function CartPage() {
           {cart.map((p, index) => (
             <div key={index} className={styles.cartItem}>
               <Image
-                src={p.image}
+                src={p.image_url}
                 alt={p.name}
                 width={100}
                 height={100}
@@ -54,7 +54,7 @@ export default function CartPage() {
               />
 
               <div className={styles.itemInfo}>
-                <h3 className={styles.itemName}>{p.name}</h3>
+                <h2 className={styles.itemName}>{p.name}</h2>
                 {/* ✅ Convert price to number safely */}
                 <p className={styles.itemPrice}>
                   Price: ${Number(p.price).toFixed(2)}

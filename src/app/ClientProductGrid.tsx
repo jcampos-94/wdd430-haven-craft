@@ -41,23 +41,25 @@ export default function ClientProductGrid({ products }: ClientProductGridProps) 
       {/* FILTER BAR */}
       <section className={styles.filters}>
         <div className={styles.filterCategory}>
-          <label className={styles.filterLabel}>Seller: </label>
-          <select className={styles.filterSelect} value={selectedSeller} onChange={(e) => setSelectedSeller(e.target.value)}>
-            <option value="">All</option>
-            {sellers.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
+          <label className={styles.filterLabel}>Seller: 
+            <select className={styles.filterSelect} value={selectedSeller} onChange={(e) => setSelectedSeller(e.target.value)}>
+              <option value="">All</option>
+              {sellers.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <div className={styles.filterCategory}>
-          <label className={styles.filterLabel}>Category: </label>
-          <select className={styles.filterSelect} value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-            <option value="">All</option>
-            {categories.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
+          <label className={styles.filterLabel}>Category:
+            <select className={styles.filterSelect} value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+              <option value="">All</option>
+              {categories.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </label>
         </div>
       </section>
 

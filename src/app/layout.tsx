@@ -53,11 +53,11 @@ export default function RootLayout({
             <Navigation />
 
             {/* Page Content */}
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 main">{children}</main>
 
             {/* Footer */}
-            <footer className="">
-              © {new Date().getFullYear()} Handcrafted Haven — WDD430 Project
+            <footer className="footer">
+              <p>© {new Date().getFullYear()} Handcrafted Haven — WDD430 Project</p>
             </footer>
           </div>
         </AuthProvider>
