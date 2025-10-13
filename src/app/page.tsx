@@ -6,7 +6,7 @@ export default async function Home() {
   const products: Product[] = await getProducts();
 
   return (
-    <main className={styles.main}>
+    <>
       {/* HERO */}
       <section>
         <div className={styles.hero} />
@@ -17,7 +17,7 @@ export default async function Home() {
       </section>
 
       {/* PRODUCTS SECTION */}
-      <ClientProductGrid products={products} />;
-    </main>
+      <ClientProductGrid products={products} />
+    </>
   );
 }
