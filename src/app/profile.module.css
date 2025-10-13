@@ -20,7 +20,7 @@
   border: none;
   border-radius: 8px;
   padding: 7px 18px;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   font-weight: 600;
   transition: all 0.3s ease;
 }
@@ -35,8 +35,25 @@
   transform: translateY(-2px);
 }
 
+.viewBtn {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background-color: #0f4d27;
+  color: #fff;
+}
+
+.viewBtn:hover {
+  background-color: #33995a;
+  transform: translateY(-2px);
+}
+
 .card {
-  background: #e3f5e8; 
+  background: #e3f5e8;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 24px;
@@ -98,7 +115,7 @@
 .location {
   color: #aaa;
   font-size: 12px;
-   margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 /* Crafting Process */
@@ -177,7 +194,6 @@
   background: #d0f4da;
 }
 
-
 .updateDate {
   font-size: 12px;
   color: #888;
@@ -249,8 +265,6 @@
   padding: 8px 14px;
   border-radius: 8px;
 }
-
-
 
 /* ====== Seller Dashboard Page ====== */
 .sellerDashboard {
@@ -410,7 +424,7 @@
 .feedback {
   background: #f4f8f5;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 20px;
   margin-bottom: 30px;
 }
