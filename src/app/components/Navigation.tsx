@@ -12,7 +12,7 @@ export function Navigation() {
     <nav className={styles.nav}>
       <Image
         alt="Handcrafted Haven logo"
-        src={'/logo.png'}
+        src={'/logo.webp'}
         width={80}
         height={80}
       />
