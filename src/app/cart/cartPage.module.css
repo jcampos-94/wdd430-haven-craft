@@ -82,3 +82,52 @@
 .removeBtn:hover {
     background-color: #c82333;
 }
+
+.checkoutBtn {
+    display: block;
+    width: 100%;
+    background-color: #2d6a4f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.checkoutBtn:hover {
+    background-color: #1b4332;
+    transform: translateY(-1px);
+}
+
+.disabled {
+    background-color: #b7b7b7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 🔔 Toast alert */
+.alert {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e63946;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    animation: fadeInOut 3s ease forwards;
+    z-index: 1000;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 10px); }
+    10% { opacity: 1; transform: translate(-50%, 0); }
+    90% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 10px); }
+}

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import styles from "./cartPage.module.css";
 
 interface Product {
@@ -11,21 +12,20 @@ interface Product {
 
 export default function CartPage() {
   const [cart, setCart] = useState<Product[]>([]);
+  const [showAlert, setShowAlert] = useState(false);
+  const router = useRouter();
 
-  // Load cart from localStorage
+  // Load cart
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-    // 🔧 Convert prices to numbers
     const numericCart = storedCart.map((item: any) => ({
       ...item,
       price: Number(item.price),
     }));
-
     setCart(numericCart);
   }, []);
 
-  // Remove one item from cart
+  // Remove item
   const handleRemove = (index: number) => {
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
@@ -34,6 +34,16 @@ export default function CartPage() {
 
   // Calculate total
   const total = cart.reduce((sum, p) => sum + p.price, 0);
+
+  // Go to checkout
+  const handleCheckout = () => {
+    if (cart.length > 0) {
+      router.push("/checkout");
+    } else {
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -52,10 +62,8 @@ export default function CartPage() {
                 height={100}
                 className={styles.itemImage}
               />
-
               <div className={styles.itemInfo}>
                 <h3 className={styles.itemName}>{p.name}</h3>
-                {/* ✅ Convert price to number safely */}
                 <p className={styles.itemPrice}>
                   Price: ${Number(p.price).toFixed(2)}
                 </p>
@@ -69,10 +77,22 @@ export default function CartPage() {
             </div>
           ))}
 
-          {/* Total */}
           <div className={styles.total}>Total: ${total.toFixed(2)}</div>
         </div>
       )}
+
+      {/* Checkout Button */}
+      <button
+        onClick={handleCheckout}
+        className={`${styles.checkoutBtn} ${
+          cart.length === 0 ? styles.disabled : ""
+        }`}
+      >
+        Proceed to Checkout
+      </button>
+
+      {/* Alert (toast) */}
+      {showAlert && <div className={styles.alert}>⚠️ Add at least one item to continue</div>}
     </div>
   );
 }
