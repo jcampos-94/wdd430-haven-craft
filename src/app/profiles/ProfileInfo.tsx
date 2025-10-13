@@ -48,7 +48,7 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
       {/*Header*/}
       <article className={styles.card}>
         <div className={styles.headerRow}>
-          <h2>Artisan Profiles</h2>
+          <h1>Artisan Profiles</h1>
           <button
             onClick={() => setShowSellerForm(true)}
             className={`${styles.btn} ${styles.primaryBtn}`}
