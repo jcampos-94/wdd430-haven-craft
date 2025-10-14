@@ -1,7 +1,5 @@
-import { auth } from "@/auth";
 import { getSellerByGithubId, getSellerProducts } from "@/app/lib/data";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import styles from "../../profile.module.css";
 
 export default async function SellerDashboardPage({
@@ -20,7 +18,7 @@ export default async function SellerDashboardPage({
   return (
     <section className={styles.main}>
       {/* Seller Info */}
-      <header className={styles.header}>
+      <header className={styles.headerSection}>
         <div className={styles.profilePic}>
           <Image
             src={seller.profile_image || "/images/sellers/seller.png"}
