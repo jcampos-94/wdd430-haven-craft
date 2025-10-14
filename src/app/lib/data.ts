@@ -252,11 +252,12 @@ export async function createSeller(
   }
 }
 
-export async function updateSeller(email: string, data: { location: string; craft: string }) {
+// Update seller
+export async function updateSeller(email: string, data: { location?: string; craft?: string; story?: string }) {
   try {
     const { rows } = await sql`
       UPDATE sellers
-      SET location = ${data.location}, craft = ${data.craft}
+      SET location = ${data.location}, craft = ${data.craft}, story = ${data.story}
       WHERE email = ${email}
       RETURNING *;
     `;

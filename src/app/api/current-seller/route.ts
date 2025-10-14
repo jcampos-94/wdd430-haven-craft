@@ -17,7 +17,7 @@ export async function GET() {
       console.log(`Creating new seller for email ${session.user.email}`);
       
       const userName = session.user.name || session.user.email.split('@')[0];
-      const profileImage = session.user.image || '/images/artisan-profile.png';
+      const profileImage = session.user.seller?.profile_image || '/images/sellers/seller.png';
       
       seller = await createSeller(
         userName,
@@ -52,8 +52,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { location, craft } = await req.json();
-    await updateSeller(session.user.email, { location, craft });
+    const { location, craft, story } = await req.json();
+    await updateSeller(session.user.email, { location, craft, story});
 
     return NextResponse.json({ message: "Seller profile updated" });
   } catch (error) {

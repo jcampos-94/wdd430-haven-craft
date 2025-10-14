@@ -16,7 +16,7 @@ export default function ProfileSettings() {
         });
         const data = await res.json();
         if (res.ok && data) {
-          setIsProfileComplete(!!data.location && !!data.craft);
+          setIsProfileComplete(!!data.location && !!data.craft && !!data.story);
         } else {
           setIsProfileComplete(false);
         }
