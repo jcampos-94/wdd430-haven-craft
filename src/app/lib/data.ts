@@ -10,6 +10,15 @@ export interface Product {
   category_name: string;
 }
 
+export interface Seller {
+  id: number;
+  name: string;
+  email: string;
+  location?: string;
+  craft?: string;
+  profile_image?: string;
+}
+
 // Helper function to normalize image URLs
 function normalizeImageUrl(url: string): string {
   if (!url) return url;
@@ -232,6 +241,22 @@ export async function createSeller(
     throw new Error("Failed to create seller");
   }
 }
+
+export async function updateSeller(email: string, data: { location: string; craft: string }) {
+  try {
+    const { rows } = await sql`
+      UPDATE sellers
+      SET location = ${data.location}, craft = ${data.craft}
+      WHERE email = ${email}
+      RETURNING *;
+    `;
+    return rows[0];
+  } catch (error) {
+    console.error("❌ Error updating seller:", error);
+    throw new Error("Failed to update seller");
+  }
+}
+
 
 // Create a new product
 export async function createProduct(

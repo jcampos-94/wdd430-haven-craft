@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/auth';
-import { getSellerByEmail, createSeller } from '@/app/lib/data';
+import { getSellerByEmail, createSeller, updateSeller } from '@/app/lib/data';
 
 export async function GET() {
   try {
@@ -41,5 +41,23 @@ export async function GET() {
       { error: 'Failed to fetch seller' },
       { status: 500 }
     );
+  }
+}
+
+export async function POST(req: Request) {
+  try {
+    const session = await auth();
+    
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { location, craft } = await req.json();
+    await updateSeller(session.user.email, { location, craft });
+
+    return NextResponse.json({ message: "Seller profile updated" });
+  } catch (error) {
+    console.error("Error updating seller:", error);
+    return NextResponse.json({ error: "Failed to update seller" }, { status: 500 });
   }
 }
