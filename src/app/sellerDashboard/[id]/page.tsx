@@ -1,13 +1,14 @@
-import { getSellerById, getSellerProducts } from "@/app/lib/data";
-import Image from "next/image";
-import styles from "../../profile.module.css";
+import { getSellerById, getSellerProducts } from '@/app/lib/data';
+import Image from 'next/image';
+import styles from '../../profile.module.css';
 
 export default async function SellerDashboardPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const sellerId = Number(params.id);
+  const { id } = await params;
+  const sellerId = Number(id);
   const seller = await getSellerById(sellerId);
   const products = await getSellerProducts(sellerId);
 
@@ -21,7 +22,7 @@ export default async function SellerDashboardPage({
       <header className={styles.header}>
         <div className={styles.profilePic}>
           <Image
-            src={seller.profile_image || "/images/artisan-profile.png"}
+            src={seller.profile_image || '/images/artisan-profile.png'}
             alt={seller.name}
             fill
             className={styles.profileImg}
@@ -32,7 +33,8 @@ export default async function SellerDashboardPage({
             Welcome back, {seller.shop_name || seller.name}!
           </h1>
           <p className={styles.welcomeText}>
-            Your handcrafted creations inspire many. Here&apos;s your shop overview and updates.
+            Your handcrafted creations inspire many. Here&apos;s your shop
+            overview and updates.
           </p>
         </div>
       </header>
@@ -41,11 +43,11 @@ export default async function SellerDashboardPage({
       <section className={styles.statsGrid}>
         <div className={styles.statCard}>
           <h3>Total Sales</h3>
-          <p>${seller.total_sales || "0"}</p>
+          <p>${seller.total_sales || '0'}</p>
         </div>
         <div className={styles.statCard}>
           <h3>Pending Orders</h3>
-          <p>{seller.pending_orders || "0"}</p>
+          <p>{seller.pending_orders || '0'}</p>
         </div>
         <div className={styles.statCard}>
           <h3>Products</h3>
@@ -53,7 +55,7 @@ export default async function SellerDashboardPage({
         </div>
         <div className={styles.statCard}>
           <h3>Messages</h3>
-          <p>{seller.messages || "0"}</p>
+          <p>{seller.messages || '0'}</p>
         </div>
       </section>
 
