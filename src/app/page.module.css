@@ -34,6 +34,7 @@
 
 .navLinks {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 }
 
@@ -108,6 +109,7 @@ a.secondary {
 /* Browsing Filters */
 .filters {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin: 10px auto;
   background-color: var(--accent);
@@ -242,7 +244,6 @@ a.secondary {
 @media (max-width: 600px) {
   .page {
     padding: 20px;
-    padding-bottom: 80px;
   }
 
   .main {
@@ -301,6 +302,13 @@ a.secondary {
 .heroText {
   text-align: center;
   margin-top: 1rem;
+}
+
+@media (max-width: 879px) {
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 @media (max-width: 768px) {

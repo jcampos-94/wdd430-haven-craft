@@ -19,7 +19,7 @@ export default async function SellerDashboardPage({
   return (
     <section className={styles.main}>
       {/*Seller Info*/}
-      <header className={styles.header}>
+      <header className={styles.headerSection}>
         <div className={styles.profilePic}>
           <Image
             src={seller.profile_image || '/images/artisan-profile.png'}

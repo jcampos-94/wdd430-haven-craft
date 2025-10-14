@@ -1,140 +1,91 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: linear-gradient(180deg, #d8f3dc 0%, #b7e4c7 100%);
-    font-family: 'Lato', sans-serif;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  font-family: 'Lato', sans-serif;
+  padding: 20px;
 }
 
 /* --- Login Box --- */
 .loginBox,
 .loggedInBox {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 40px;
-    width: 360px;
-    max-width: 90%;
-    text-align: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  width: 360px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .loginBox:hover,
 .loggedInBox:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
 }
 
 /* --- Title --- */
 .title {
-    font-family: 'IM Fell DW Pica', serif;
-    font-size: 2rem;
-    color: #081c15;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 0px rgba(8, 28, 21, 0.1);
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 2rem;
+  color: #081c15;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 0px rgba(8, 28, 21, 0.1);
 }
 
 /* --- Subtext --- */
 .subtitle {
-    color: #40916c;
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
+  color: #40916c;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
 }
 
 /* --- GitHub button --- */
 .githubButton,
 .signOutButton {
-    background-color: #081c15;
-    color: #ffffff;
-    border: none;
-    padding: 12px 20px;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .githubButton:hover,
 .signOutButton:hover {
-    background-color: #1b4332;
-    transform: translateY(-2px);
-}
-
-/* --- Divider --- */
-.divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1.5rem 0;
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-.divider::before,
-.divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #adb5bd;
-    margin: 0 10px;
-}
-
-/* --- Input fields --- */
-.input {
-    border: 1px solid #adb5bd;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 1rem;
-    width: 100%;
-    margin-bottom: 10px;
-    transition: border-color 0.2s ease;
-}
-
-.input:focus {
-    border-color: #1b4332;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.2);
-}
-
-/* --- Disabled button --- */
-.disabledButton {
-    background-color: #95d5b2;
-    color: #ffffff;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 1rem;
-    width: 100%;
-    cursor: not-allowed;
+  background-color: #116111;
+  transform: translateY(-2px);
 }
 
 /* --- Note --- */
 .note {
-    text-align: center;
-    margin-top: 1.5rem;
-    color: #555;
-    font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #555;
+  font-size: 0.9rem;
 }
 
 /* --- Logged-in message --- */
 .loggedInBox h1 {
-    color: #081c15;
-    font-family: 'IM Fell DW Pica', serif;
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
+  color: #081c15;
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .loggedInBox p {
-    color: #40916c;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+  color: #40916c;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
 }

@@ -49,12 +49,6 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
       <article className={styles.card}>
         <div className={styles.headerRow}>
           <h1>Artisan Profiles</h1>
-          <button
-            onClick={() => setShowSellerForm(true)}
-            className={`${styles.btn} ${styles.primaryBtn}`}
-          >
-            🛍️ Become a Seller
-          </button>
         </div>
         <p>
           Meet our talented artisans! Each profile showcases their story, craft,
