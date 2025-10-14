@@ -15,25 +15,35 @@ export const authConfig: NextAuthConfig = {
     signIn: "/login",
   },
   callbacks: {
-     // Runs when a user signs in
-    async signIn({ user }) {
+    //user sign-in
+    async signIn({ user, account }) {
       if (!user?.email) return false;
 
       try {
+        const githubId = account?.providerAccountId;
+
         const { rows } = await sql`
           SELECT * FROM sellers WHERE email = ${user.email};
         `;
 
-        // If no seller exists, create one
         if (rows.length === 0) {
           await sql`
-            INSERT INTO sellers (name, email, profile_image)
-            VALUES (${user.name || "Unnamed Seller"}, ${user.email}, ${user.image});
+            INSERT INTO sellers (name, email, profile_image, github_id)
+            VALUES (${user.name || "Unnamed Seller"}, ${user.email}, ${user.image}, ${githubId});
           `;
           console.log("✅ New seller created:", user.email);
+        } else {
+          const seller = rows[0];
+          if (!seller.github_id && githubId) {
+            await sql`
+              UPDATE sellers
+              SET github_id = ${githubId}
+              WHERE email = ${user.email};
+            `;
+            console.log("🔄 Added missing GitHub ID for:", user.email);
+          }
         }
 
-        // Either way, sign-in succeeds
         return true;
       } catch (error) {
         console.error("❌ Error during sign-in:", error);
@@ -41,45 +51,25 @@ export const authConfig: NextAuthConfig = {
       }
     },
 
-    // Add seller info to the session (available via useSession / getServerSession)
-    async session({ session }) {
+     async session({ session }) {
       if (!session?.user?.email) return session;
 
       try {
         const { rows } = await sql`
           SELECT * FROM sellers WHERE email = ${session.user.email};
         `;
-
         if (rows.length > 0) {
           const seller = rows[0] as Seller;
           session.user.seller = seller;
         }
-        
       } catch (error) {
         console.error("Error attaching seller info to session:", error);
       }
 
       return session;
     },
-    
-    // authorized({ auth, request: { nextUrl } }) {
-    //   const isLoggedIn = !!auth?.user
-    //   const isOnDashboard = nextUrl.pathname.startsWith("/sellerDashboard")
-    //   const isOnOrders = nextUrl.pathname.startsWith("/orders")
-    //   const isOnProfileSettings = nextUrl.pathname.startsWith("/profileSettings")
-      
-  
-    //   if (isOnDashboard || isOnOrders || isOnProfileSettings) {
-    //     if (isLoggedIn) return true
-    //     return false 
-    //   }
-      
-    //   return true
-    // },
   },
-  session: {
-    strategy: "jwt",
-  },
-}
+  session: { strategy: "jwt" },
+};
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authConfig)

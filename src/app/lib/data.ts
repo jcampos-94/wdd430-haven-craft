@@ -12,11 +12,13 @@ export interface Product {
 
 export interface Seller {
   id: number;
+  github_id: string;
   name: string;
   email: string;
   location?: string;
   craft?: string;
   profile_image?: string;
+  story: string;
 }
 
 // Helper function to normalize image URLs
@@ -158,6 +160,14 @@ export async function getSellerById(id: number) {
     console.error("❌ Error fetching seller by ID:", error);
     return null;
   }
+}
+
+// Get seller by github_id
+export async function getSellerByGithubId(github_id: string) {
+  const { rows } = await sql`
+    SELECT * FROM sellers WHERE github_id = ${github_id};
+  `;
+  return rows[0];
 }
 
 // Get seller by email

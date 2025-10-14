@@ -10,11 +10,13 @@ export async function GET() {
     await sql`
       CREATE TABLE sellers (
         id SERIAL PRIMARY KEY,
+        github_id TEXT UNIQUE,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
         location VARCHAR(255),
         profile_image TEXT,
-        craft TEXT
+        craft TEXT,
+        story TEXT
       );
     `;
 
@@ -45,16 +47,16 @@ export async function GET() {
 
     // Insert sellers
     await sql`
-      INSERT INTO sellers (name, email, location, profile_image, craft)
+      INSERT INTO sellers (name, email, location, profile_image, craft, story)
       VALUES 
-        ('Ana Rivera', 'ana@haven.com', 'Granada, Spain', '/images/sellers/ana.jpg', 'Ceramic Pottery'),
-        ('Liam Torres', 'liam@haven.com', 'Guadalajara, Mexico', '/images/sellers/liam.jpg', 'Leather Craft'),
-        ('Sofia Chen', 'sofia@haven.com', 'Tainan, Taiwan', '/images/sellers/sofia.jpg', 'Textile Weaving'),
-        ('Noah Patel', 'noah@haven.com', 'Kolkotta, India', '/images/sellers/noah.jpg', 'Ceramic Pottery'),
-        ('Emma Johnson', 'emma@haven.com', 'Hartford, USA', '/images/sellers/emma.jpg', 'Jewelry Making'),
-        ('Sarah Cox', 'sarah@haven.com', 'Utah, USA', '/images/sellers/sarah.jpg', 'Ceramic Pottery'),
-        ('Maria Santos', 'maria@haven.com', 'Cebu, Philippines', '/images/sellers/maria.jpg', 'Textile Weaving'),
-        ('Aisha Aliezar', 'aisha@haven.com', 'Marrakesh, Morocco', '/images/sellers/aisha.jpg', 'Jewelry Making');
+        ('Ana Rivera', 'ana@haven.com', 'Granada, Spain', '/images/sellers/ana.jpg', 'Ceramic Pottery', 'Ana transforms raw clay into timeless pottery, blending traditional techniques with modern designs.'),
+        ('Liam Torres', 'liam@haven.com', 'Guadalajara, Mexico', '/images/sellers/liam.jpg', 'Leather Craft', 'Liam handcrafts leather goods with attention to detail, creating pieces that last for generations.'),
+        ('Sofia Chen', 'sofia@haven.com', 'Tainan, Taiwan', '/images/sellers/sofia.jpg', 'Textile Weaving', 'Sofia weaves vibrant textiles inspired by Taiwanese heritage and contemporary patterns.'),
+        ('Noah Patel', 'noah@haven.com', 'Kolkotta, India', '/images/sellers/noah.jpg', 'Ceramic Pottery', 'Noah combines local clay with intricate glazing to make each ceramic piece a work of art.'),
+        ('Emma Johnson', 'emma@haven.com', 'Hartford, USA', '/images/sellers/emma.jpg', 'Jewelry Making', 'Emma crafts elegant jewelry that captures both timeless beauty and modern trends.'),
+        ('Sarah Cox', 'sarah@haven.com', 'Utah, USA', '/images/sellers/sarah.jpg', 'Ceramic Pottery', 'Sarah creates functional ceramics with unique textures and subtle glazes that brighten any home.'),
+        ('Maria Santos', 'maria@haven.com', 'Cebu, Philippines', '/images/sellers/maria.jpg', 'Textile Weaving', 'Maria blends traditional Philippine weaving techniques with contemporary designs for vibrant textiles.'),
+        ('Aisha Aliezar', 'aisha@haven.com', 'Marrakesh, Morocco', '/images/sellers/aisha.jpg', 'Jewelry Making', 'Aisha draws inspiration from Moroccan culture to design colorful and intricate jewelry pieces.');
     `;
 
     // Insert products (at least 10)

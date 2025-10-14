@@ -1,18 +1,13 @@
-import NextAuth, { DefaultSession } from "next-auth";
+import NextAuth from "next-auth";
+import type { Seller } from "@/app/lib/data";
 
 declare module "next-auth" {
-  interface Session extends DefaultSession {
-    user: DefaultSession["user"] & {
-      id?: number;
+  interface Session {
+    user: {
+      id: number;
+      name: string;
       email: string;
-      seller?: {
-        id: number;
-        name: string;
-        email: string;
-        location?: string;
-        craft?: string;
-        profile_image?: string;
-      };
+      seller?: Seller;
     };
   }
 }
