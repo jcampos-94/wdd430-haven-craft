@@ -76,7 +76,8 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
               <h2>{artisan.name}</h2>
               <p className={styles.craft}>{artisan.craft}</p>
               <p className={styles.location}>{artisan.location}</p>
-              <Link href={`/profiles/${artisan.id}`}>
+              {/* Link to Seller Dashboard not profile */}
+              <Link href={`/sellerDashboard/${artisan.id}`}>
                 <button className={styles.viewBtn}>View Profile</button>
               </Link>
             </div>

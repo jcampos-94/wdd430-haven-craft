@@ -10,6 +10,27 @@ export interface Product {
   category_name: string;
 }
 
+// Helper function to normalize image URLs
+function normalizeImageUrl(url: string): string {
+  if (!url) return url;
+  
+  // If it's an absolute Windows path, extract the relative path
+  if (url.includes('\\') || url.includes('C:')) {
+    // Extract everything after 'public'
+    const publicIndex = url.indexOf('public');
+    if (publicIndex !== -1) {
+      return url.substring(publicIndex + 6).replace(/\\/g, '/');
+    }
+  }
+  
+  // Ensure it starts with /
+  if (!url.startsWith('/') && !url.startsWith('http')) {
+    return '/' + url;
+  }
+  
+  return url;
+}
+
 // Get all products
 export async function getProducts(): Promise<Product[]> {
   try {
@@ -27,7 +48,15 @@ export async function getProducts(): Promise<Product[]> {
       LEFT JOIN categories c ON p.category_id = c.id
       ORDER BY p.id ASC;
     `;
-    return rows as Product[];
+    
+    // Normalize image URLs and prices
+    const products = rows.map(row => ({
+      ...row,
+      image_url: normalizeImageUrl(row.image_url),
+      price: Number(row.price)
+    }));
+    
+    return products as Product[];
   } catch (error) {
     console.error("❌ Error fetching products:", error);
     throw new Error("Failed to fetch products");
@@ -53,7 +82,13 @@ export async function getProductById(id: string) {
       LIMIT 1;
     `;
 
-    return rows[0] || null;
+    const product = rows[0];
+    if (product) {
+      product.image_url = normalizeImageUrl(product.image_url);
+      product.price = Number(product.price);
+    }
+    
+    return product || null;
   } catch (error) {
     console.error("❌ Error fetching product by ID:", error);
     return null;
@@ -75,7 +110,15 @@ export async function getSellerProducts(sellerId: number) {
       LEFT JOIN categories c ON p.category_id = c.id
       WHERE p.seller_id = ${sellerId};
     `;
-    return rows;
+    
+    // Normalize image URLs and prices
+    const products = rows.map(row => ({
+      ...row,
+      image_url: normalizeImageUrl(row.image_url),
+      price: Number(row.price)
+    }));
+    
+    return products;
   } catch (error) {
     console.error("❌ Error fetching seller products:", error);
     throw new Error("Failed to fetch seller products");
@@ -97,9 +140,28 @@ export async function getSellers() {
 export async function getSellerById(id: number) {
   try {
     const { rows } = await sql`SELECT * FROM sellers WHERE id = ${id};`;
-    return rows[0] || null;
+    const seller = rows[0];
+    if (seller && seller.profile_image) {
+      seller.profile_image = normalizeImageUrl(seller.profile_image);
+    }
+    return seller || null;
   } catch (error) {
     console.error("❌ Error fetching seller by ID:", error);
+    return null;
+  }
+}
+
+// Get seller by email
+export async function getSellerByEmail(email: string) {
+  try {
+    const { rows } = await sql`SELECT * FROM sellers WHERE email = ${email};`;
+    const seller = rows[0];
+    if (seller && seller.profile_image) {
+      seller.profile_image = normalizeImageUrl(seller.profile_image);
+    }
+    return seller || null;
+  } catch (error) {
+    console.error("❌ Error fetching seller by email:", error);
     return null;
   }
 }
@@ -123,9 +185,93 @@ export async function getProductsByCategory(category: string) {
       JOIN categories c ON p.category_id = c.id
       WHERE c.name = ${category};
     `;
-    return rows;
+    
+    // Normalize image URLs and prices
+    const products = rows.map(row => ({
+      ...row,
+      image_url: normalizeImageUrl(row.image_url),
+      seller_image: normalizeImageUrl(row.seller_image),
+      price: Number(row.price)
+    }));
+    
+    return products;
   } catch (error) {
     console.error("❌ Error fetching products by category:", error);
     throw new Error("Failed to fetch products by category");
+  }
+}
+
+// Get all categories
+export async function getCategories() {
+  try {
+    const { rows } = await sql`SELECT * FROM categories ORDER BY name ASC;`;
+    return rows;
+  } catch (error) {
+    console.error("❌ Error fetching categories:", error);
+    throw new Error("Failed to fetch categories");
+  }
+}
+
+// Create a new seller
+export async function createSeller(
+  name: string,
+  email: string,
+  profileImage?: string,
+  location?: string,
+  craft?: string
+) {
+  try {
+    const { rows } = await sql`
+      INSERT INTO sellers (name, email, profile_image, location, craft)
+      VALUES (${name}, ${email}, ${profileImage || null}, ${location || 'Unknown'}, ${craft || 'Artisan'})
+      RETURNING *;
+    `;
+    return rows[0];
+  } catch (error) {
+    console.error("❌ Error creating seller:", error);
+    throw new Error("Failed to create seller");
+  }
+}
+
+// Create a new product
+export async function createProduct(
+  name: string,
+  description: string,
+  price: number,
+  imageUrl: string,
+  sellerId: number,
+  categoryId: number
+) {
+  try {
+    const { rows } = await sql`
+      INSERT INTO products (name, description, price, image_url, seller_id, category_id)
+      VALUES (${name}, ${description}, ${price}, ${imageUrl}, ${sellerId}, ${categoryId})
+      RETURNING *;
+    `;
+    return rows[0];
+  } catch (error) {
+    console.error("❌ Error creating product:", error);
+    throw new Error("Failed to create product");
+  }
+}
+
+// Delete a product
+export async function deleteProduct(productId: number, sellerId: number) {
+  try {
+    // Verify that the product belongs to the seller before deleting
+    const { rows } = await sql`
+      DELETE FROM products
+      WHERE id = ${productId} AND seller_id = ${sellerId}
+      RETURNING id;
+    `;
+    
+    if (rows.length === 0) {
+      throw new Error("Product not found or you don't have permission to delete it");
+    }
+    
+    return rows[0];
+  } catch (error) {
+    console.error("❌ Error deleting product:", error);
+    throw new Error("Failed to delete product");
   }
 }
