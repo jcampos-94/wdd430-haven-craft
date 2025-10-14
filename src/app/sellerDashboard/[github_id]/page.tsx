@@ -1,14 +1,14 @@
-import { getSellerByGithubId, getSellerProducts } from "@/app/lib/data";
-import Image from "next/image";
-import styles from "../../profile.module.css";
+import { getSellerByGithubId, getSellerProducts } from '@/app/lib/data';
+import Image from 'next/image';
+import styles from '../../profile.module.css';
 
 export default async function SellerDashboardPage({
   params,
 }: {
-  params: { github_id: string };
+  params: Promise<{ github_id: string }>;
 }) {
-  const githubId = params.github_id;
-  const seller = await getSellerByGithubId(githubId);
+  const { github_id } = await params;
+  const seller = await getSellerByGithubId(github_id);
   const products = await getSellerProducts(seller?.id);
 
   if (!seller) {
@@ -21,18 +21,17 @@ export default async function SellerDashboardPage({
       <header className={styles.headerSection}>
         <div className={styles.profilePic}>
           <Image
-            src={seller.profile_image || "/images/sellers/seller.png"}
+            src={seller.profile_image || '/images/sellers/seller.png'}
             alt={seller.name}
             fill
             className={styles.profileImg}
           />
         </div>
         <div>
-          <h1 className={styles.welcomeTitle}>
-            Welcome back, {seller.name}!
-          </h1>
+          <h1 className={styles.welcomeTitle}>Welcome back, {seller.name}!</h1>
           <p className={styles.welcomeText}>
-            Your handcrafted creations inspire many. Here&apos;s your shop overview and updates.
+            Your handcrafted creations inspire many. Here&apos;s your shop
+            overview and updates.
           </p>
         </div>
       </header>
@@ -41,11 +40,11 @@ export default async function SellerDashboardPage({
       <section className={styles.statsGrid}>
         <div className={styles.statCard}>
           <h3>Total Sales</h3>
-          <p>${seller.total_sales || "0"}</p>
+          <p>${seller.total_sales || '0'}</p>
         </div>
         <div className={styles.statCard}>
           <h3>Pending Orders</h3>
-          <p>{seller.pending_orders || "0"}</p>
+          <p>{seller.pending_orders || '0'}</p>
         </div>
         <div className={styles.statCard}>
           <h3>Products</h3>
@@ -53,7 +52,7 @@ export default async function SellerDashboardPage({
         </div>
         <div className={styles.statCard}>
           <h3>Messages</h3>
-          <p>{seller.messages || "0"}</p>
+          <p>{seller.messages || '0'}</p>
         </div>
       </section>
 
