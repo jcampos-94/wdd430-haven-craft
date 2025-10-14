@@ -1,16 +1,15 @@
-import { getSellerById, getSellerProducts } from '@/app/lib/data';
+import { getSellerByGithubId, getSellerProducts } from '@/app/lib/data';
 import Image from 'next/image';
 import styles from '../../profile.module.css';
 
 export default async function SellerDashboardPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ github_id: string }>;
 }) {
-  const { id } = await params;
-  const sellerId = Number(id);
-  const seller = await getSellerById(sellerId);
-  const products = await getSellerProducts(sellerId);
+  const { github_id } = await params;
+  const seller = await getSellerByGithubId(github_id);
+  const products = await getSellerProducts(seller?.id);
 
   if (!seller) {
     return <p>Seller not found.</p>;
@@ -18,20 +17,18 @@ export default async function SellerDashboardPage({
 
   return (
     <section className={styles.main}>
-      {/*Seller Info*/}
+      {/* Seller Info */}
       <header className={styles.headerSection}>
         <div className={styles.profilePic}>
           <Image
-            src={seller.profile_image || '/images/artisan-profile.png'}
+            src={seller.profile_image || '/images/sellers/seller.png'}
             alt={seller.name}
             fill
             className={styles.profileImg}
           />
         </div>
         <div>
-          <h1 className={styles.welcomeTitle}>
-            Welcome back, {seller.shop_name || seller.name}!
-          </h1>
+          <h1 className={styles.welcomeTitle}>Welcome back, {seller.name}!</h1>
           <p className={styles.welcomeText}>
             Your handcrafted creations inspire many. Here&apos;s your shop
             overview and updates.
@@ -39,7 +36,7 @@ export default async function SellerDashboardPage({
         </div>
       </header>
 
-      {/*Dashboard Cards*/}
+      {/* Dashboard Cards */}
       <section className={styles.statsGrid}>
         <div className={styles.statCard}>
           <h3>Total Sales</h3>
@@ -59,7 +56,7 @@ export default async function SellerDashboardPage({
         </div>
       </section>
 
-      {/*Product List*/}
+      {/* Product List */}
       <section className={styles.updates}>
         <h2>🛍️ Your Products</h2>
         <ul>

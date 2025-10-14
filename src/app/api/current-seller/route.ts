@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/auth';
-import { getSellerByEmail, createSeller } from '@/app/lib/data';
+import { getSellerByEmail, createSeller, updateSeller } from '@/app/lib/data';
 
 export async function GET() {
   try {
@@ -17,7 +17,7 @@ export async function GET() {
       console.log(`Creating new seller for email ${session.user.email}`);
       
       const userName = session.user.name || session.user.email.split('@')[0];
-      const profileImage = session.user.image || '/images/artisan-profile.png';
+      const profileImage = session.user.seller?.profile_image || '/images/sellers/seller.png';
       
       seller = await createSeller(
         userName,
@@ -41,5 +41,23 @@ export async function GET() {
       { error: 'Failed to fetch seller' },
       { status: 500 }
     );
+  }
+}
+
+export async function POST(req: Request) {
+  try {
+    const session = await auth();
+    
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { location, craft, story } = await req.json();
+    await updateSeller(session.user.email, { location, craft, story});
+
+    return NextResponse.json({ message: "Seller profile updated" });
+  } catch (error) {
+    console.error("Error updating seller:", error);
+    return NextResponse.json({ error: "Failed to update seller" }, { status: 500 });
   }
 }

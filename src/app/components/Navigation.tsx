@@ -7,6 +7,7 @@ import styles from '../page.module.css';
 
 export function Navigation() {
   const { data: session, status } = useSession();
+  const githubId = session?.user?.seller?.github_id;
 
   return (
     <nav className={styles.nav}>
@@ -15,6 +16,7 @@ export function Navigation() {
         src={'/logo.webp'}
         width={80}
         height={80}
+        priority
       />
       <h2>Handcrafted Haven</h2>
       <div className={styles.navLinks}>
@@ -32,9 +34,14 @@ export function Navigation() {
           <span className="text-gray-500">Loading...</span>
         ) : session ? (
           <>
-            <Link href="/sellerDashboard" className="hover:underline">
-              Dashboard
-            </Link>
+            {githubId && (
+              <Link
+                href={`/sellerDashboard/${githubId}`}
+                className="hover:underline"
+              >
+                Dashboard
+              </Link>
+            )}
             <span className="text-sm">
               Hi, {session.user?.name || session.user?.email}
             </span>
