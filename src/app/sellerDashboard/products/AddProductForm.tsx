@@ -69,7 +69,7 @@ export default function AddProductForm({ categories, sellerId, onCancel, onSucce
 
   return (
     <div className={styles.formContainer}>
-      <h2>Add New Product</h2>
+      <h1>Add New Product</h1>
       {error && <div className={styles.error}>{error}</div>}
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>

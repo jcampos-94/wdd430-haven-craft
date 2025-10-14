@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { Seller } from "@/app/lib/data";
+import styles from "./CompleteProfileForm.module.css";
 
 export default function CompleteProfilePage() {
   const router = useRouter();
@@ -60,48 +61,51 @@ export default function CompleteProfilePage() {
   if (!seller) return <p>Loading...</p>;
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">Complete Your Profile</h1>
-
-      <form onSubmit={handleSubmit}>
-        <label className="block mb-3">
-          Location
+    <div className={styles.formContainer}>
+      <h1>Complete Your Profile</h1>
+      
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.formGroup}>
+        <label htmlFor="location">Location</label>
           <input
             type="text"
             value={location}
+            name="location"
             onChange={(e) => setLocation(e.target.value)}
             placeholder="City, Country"
-            className="border p-2 w-full mt-1 rounded"
             required
           />
-        </label>
+        
+        </div>
 
-        <label className="block mb-3">
-          Craft
+        <div className={styles.formGroup}>
+        <label htmlFor="craft">Craft</label>
           <input
             type="text"
             value={craft}
+            name="craft"
             onChange={(e) => setCraft(e.target.value)}
             placeholder="What do you do?"
-            className="border p-2 w-full mt-1 rounded"
             required
           />
-        </label>
+        </div>
 
+        <div className={styles.formGroup}>
         <label htmlFor="story">Your Story</label>
         <textarea
           id="story"
           value={story}
+          name="story"
           onChange={(e) => setStory(e.target.value)}
           placeholder="Tell us about your craft, your journey, or your shop..."
           rows={4}
-          className="border rounded p-2 w-full"
         />
-
+        </div>
+        
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="submitButton"
         >
           {loading ? "Saving..." : "Save Profile"}
         </button>
