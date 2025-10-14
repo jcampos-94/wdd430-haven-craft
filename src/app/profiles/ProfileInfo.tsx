@@ -53,7 +53,7 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
             onClick={() => setShowSellerForm(true)}
             className={`${styles.btn} ${styles.primaryBtn}`}
           >
-            Become a Seller
+            🛍️ Become a Seller
           </button>
         </div>
         <p>
@@ -73,11 +73,11 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
                   className={styles.image}
                 />
               </div>
-              <h3>{artisan.name}</h3>
+              <h2>{artisan.name}</h2>
               <p className={styles.craft}>{artisan.craft}</p>
               <p className={styles.location}>{artisan.location}</p>
-              <Link href={`/sellerDashboard/${artisan.id}`}>
-                <button className={styles.viewBtn}>View Dashboard</button>
+              <Link href={`/profiles/${artisan.id}`}>
+                <button className={styles.viewBtn}>View Profile</button>
               </Link>
             </div>
           ))}
@@ -95,17 +95,17 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
         <div className={styles.processGrid}>
           <div>
             <span className={styles.icon}>🌱</span>
-            <h4>Sourcing</h4>
+            <h3>Sourcing</h3>
             <p>Eco-friendly raw materials</p>
           </div>
           <div>
             <span className={styles.icon}>🔨</span>
-            <h4>Crafting</h4>
+            <h3>Crafting</h3>
             <p>Handmade with precision</p>
           </div>
           <div>
             <span className={styles.icon}>📦</span>
-            <h4>Finishing</h4>
+            <h3>Finishing</h3>
             <p>Polish & quality check</p>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function ProfileInfo({ sellers }: { sellers: any[] }) {
         <ul className={styles.updateList}>
           {updates.map((u, i) => (
             <li key={i}>
-              <h4>{u.title}</h4>
+              <h3>{u.title}</h3>
               <p className={styles.updateDate}>{u.date}</p>
               <p>{u.description}</p>
             </li>

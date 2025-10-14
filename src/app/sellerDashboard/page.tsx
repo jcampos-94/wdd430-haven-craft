@@ -52,7 +52,7 @@ function SellerDashboard() {
   return (
     <section className={styles.main}>
       {/* Header */}
-      <header className={styles.header}>
+      <section className={styles.headerSection}>
         <div className={styles.profilePic}>
           <Image
             src={user?.image || '/images/artisan-profile.png'}
@@ -70,7 +70,7 @@ function SellerDashboard() {
             overview and updates.
           </p>
         </div>
-      </header>
+      </section>
 
       {/* Dashboard Overview */}
       <section className={styles.statsGrid}>
@@ -81,7 +81,7 @@ function SellerDashboard() {
           { title: 'Messages', value: stats.messages },
         ].map((card, i) => (
           <div key={i} className={styles.statCard}>
-            <h3>{card.title}</h3>
+            <h2>{card.title}</h2>
             <p>{card.value}</p>
           </div>
         ))}
@@ -96,7 +96,7 @@ function SellerDashboard() {
           <ul>
             {updates.map((u, i) => (
               <li key={i}>
-                <h4>{u.title}</h4>
+                <h3>{u.title}</h3>
                 <p className={styles.date}>{u.date}</p>
                 <p>{u.description}</p>
               </li>

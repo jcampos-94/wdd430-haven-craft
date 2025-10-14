@@ -1,13 +1,13 @@
-"use client";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import styles from "./cartPage.module.css";
+'use client';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import styles from './cartPage.module.css';
 
 interface Product {
   name: string;
   price: number;
-  image: string;
+  image_url: string;
 }
 
 export default function CartPage() {
@@ -17,7 +17,7 @@ export default function CartPage() {
 
   // Load cart
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
     const numericCart = storedCart.map((item: any) => ({
       ...item,
       price: Number(item.price),
@@ -29,7 +29,7 @@ export default function CartPage() {
   const handleRemove = (index: number) => {
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   // Calculate total
@@ -38,7 +38,7 @@ export default function CartPage() {
   // Go to checkout
   const handleCheckout = () => {
     if (cart.length > 0) {
-      router.push("/checkout");
+      router.push('/checkout');
     } else {
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 3000);
@@ -56,7 +56,7 @@ export default function CartPage() {
           {cart.map((p, index) => (
             <div key={index} className={styles.cartItem}>
               <Image
-                src={p.image}
+                src={p.image_url}
                 alt={p.name}
                 width={100}
                 height={100}
@@ -85,14 +85,16 @@ export default function CartPage() {
       <button
         onClick={handleCheckout}
         className={`${styles.checkoutBtn} ${
-          cart.length === 0 ? styles.disabled : ""
+          cart.length === 0 ? styles.disabled : ''
         }`}
       >
         Proceed to Checkout
       </button>
 
       {/* Alert (toast) */}
-      {showAlert && <div className={styles.alert}>⚠️ Add at least one item to continue</div>}
+      {showAlert && (
+        <div className={styles.alert}>⚠️ Add at least one item to continue</div>
+      )}
     </div>
   );
 }
