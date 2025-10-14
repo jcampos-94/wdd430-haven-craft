@@ -1,28 +1,15 @@
-<<<<<<< HEAD:src/app/sellerDashboard/[github_id]/page.tsx
 import { getSellerByGithubId, getSellerProducts } from '@/app/lib/data';
-=======
-import { getSellerById, getSellerProducts } from '@/app/lib/data';
->>>>>>> main:src/app/sellerDashboard/[id]/page.tsx
 import Image from 'next/image';
 import styles from '../../profile.module.css';
 
 export default async function SellerDashboardPage({
   params,
 }: {
-<<<<<<< HEAD:src/app/sellerDashboard/[github_id]/page.tsx
   params: Promise<{ github_id: string }>;
 }) {
   const { github_id } = await params;
   const seller = await getSellerByGithubId(github_id);
   const products = await getSellerProducts(seller?.id);
-=======
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
-  const sellerId = Number(id);
-  const seller = await getSellerById(sellerId);
-  const products = await getSellerProducts(sellerId);
->>>>>>> main:src/app/sellerDashboard/[id]/page.tsx
 
   if (!seller) {
     return <p>Seller not found.</p>;
@@ -30,19 +17,11 @@ export default async function SellerDashboardPage({
 
   return (
     <section className={styles.main}>
-<<<<<<< HEAD:src/app/sellerDashboard/[github_id]/page.tsx
       {/* Seller Info */}
       <header className={styles.headerSection}>
         <div className={styles.profilePic}>
           <Image
             src={seller.profile_image || '/images/sellers/seller.png'}
-=======
-      {/*Seller Info*/}
-      <header className={styles.headerSection}>
-        <div className={styles.profilePic}>
-          <Image
-            src={seller.profile_image || '/images/artisan-profile.png'}
->>>>>>> main:src/app/sellerDashboard/[id]/page.tsx
             alt={seller.name}
             fill
             className={styles.profileImg}
