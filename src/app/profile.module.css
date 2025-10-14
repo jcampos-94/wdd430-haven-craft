@@ -21,17 +21,17 @@
   border-radius: 8px;
   padding: 7px 18px;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 100;
   transition: all 0.3s ease;
 }
 
 .primaryBtn {
-  background-color: #33995a;
+  background-color: #0f4d27;
   color: #fff;
 }
 
 .primaryBtn:hover {
-  background-color: #0f4d27;
+  background-color: #33995a;
   transform: translateY(-2px);
 }
 
@@ -80,12 +80,17 @@
 }
 
 .artisanCard {
-  background: #dff7e6;
+  background: #f9fffa;
   border-radius: 12px;
   padding: 1rem;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   text-align: center;
+}
+
+.artisanCard h2 {
+  margin-bottom: 0;
+  font-size: 1.3em;
 }
 
 .artisanCard:hover {
@@ -277,7 +282,7 @@
 /* Sidebar */
 .sidebar {
   width: 250px;
-  background: #e3f5e8;
+  background: #f9fffa;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
   padding: 24px;
   display: flex;
@@ -299,7 +304,7 @@
 }
 
 .navLink {
-  color: #444;
+  color: #444444;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -311,7 +316,7 @@
 .footerNote {
   text-align: center;
   font-size: 12px;
-  color: #aaa;
+  color: #404040;
 }
 
 /* Main */
@@ -321,8 +326,8 @@
 }
 
 /* Header */
-.header {
-  background: #dff7e6;
+.headerSection {
+  background: #f9fffa;
   border-radius: 16px;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
   padding: 20px;
@@ -352,7 +357,7 @@
 
 .welcomeText {
   font-size: 14px;
-  color: #777;
+  color: #404040;
 }
 
 /* Stats Grid */
@@ -364,7 +369,7 @@
 }
 
 .statCard {
-  background: #dff7e6;
+  background: #f9fffa;
   border-radius: 16px;
   text-align: center;
   padding: 16px;
@@ -377,8 +382,8 @@
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
 }
 
-.statCard h3 {
-  color: #777;
+.statCard h2 {
+  color: #404040;
   font-size: 14px;
 }
 
@@ -391,7 +396,7 @@
 
 /* Updates */
 .updates {
-  background: #dff7e6;
+  background: #f9fffa;
   border-radius: 16px;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
   padding: 20px;
@@ -408,17 +413,17 @@
   border-left: 4px solid #16a34a;
   padding-left: 12px;
   margin-bottom: 12px;
-  background: #dff7e6;
+  background: #f9fffa;
   border-radius: 8px;
 }
 
 .updates li:hover {
-  background: #d0f4da;
+  background: #dff7e6;
 }
 
 .updates .date {
   font-size: 12px;
-  color: #888;
+  color: #404040;
 }
 
 /* Feedback */

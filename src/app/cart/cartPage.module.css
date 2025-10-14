@@ -1,133 +1,145 @@
 .container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #f8fdf9;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f8fdf9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: #081c15;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #081c15;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .empty {
-    font-size: 1.1rem;
-    color: #555;
-    text-align: center;
-    padding: 2rem 0;
+  font-size: 1.1rem;
+  color: #555;
+  text-align: center;
+  padding: 2rem 0;
 }
 
 .cartItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cartItem:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .itemImage {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
 .itemInfo {
-    flex: 1;
+  flex: 1;
 }
 
 .itemName {
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
 }
 
 .itemPrice {
-    font-size: 1rem;
-    color: #333;
+  font-size: 1rem;
+  color: #333;
 }
 
 .total {
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #081c15;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #081c15;
 }
 
 .removeBtn {
-    background-color: #e63946;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
+  background-color: #84101a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .removeBtn:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
 
 .checkoutBtn {
-    display: block;
-    width: 100%;
-    background-color: #2d6a4f;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 0.8rem;
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
+  display: block;
+  width: 100%;
+  background-color: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .checkoutBtn:hover {
-    background-color: #1b4332;
-    transform: translateY(-1px);
+  background-color: #1b4332;
+  transform: translateY(-1px);
 }
 
 .disabled {
-    background-color: #b7b7b7;
-    cursor: not-allowed;
-    transform: none;
+  background-color: #b7b7b7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* 🔔 Toast alert */
 .alert {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #e63946;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    font-weight: 600;
-    animation: fadeInOut 3s ease forwards;
-    z-index: 1000;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e63946;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  animation: fadeInOut 3s ease forwards;
+  z-index: 1000;
 }
 
 @keyframes fadeInOut {
-    0% { opacity: 0; transform: translate(-50%, 10px); }
-    10% { opacity: 1; transform: translate(-50%, 0); }
-    90% { opacity: 1; transform: translate(-50%, 0); }
-    100% { opacity: 0; transform: translate(-50%, 10px); }
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
 }

@@ -19,7 +19,9 @@ interface ClientProductGridProps {
   products: Product[];
 }
 
-export default function ClientProductGrid({ products }: ClientProductGridProps) {
+export default function ClientProductGrid({
+  products,
+}: ClientProductGridProps) {
   const [selectedSeller, setSelectedSeller] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
 
@@ -30,8 +32,12 @@ export default function ClientProductGrid({ products }: ClientProductGridProps) 
   // Filter products by seller/category
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
-      const sellerMatch = selectedSeller ? p.seller_name === selectedSeller : true;
-      const categoryMatch = selectedCategory ? p.category_name === selectedCategory : true;
+      const sellerMatch = selectedSeller
+        ? p.seller_name === selectedSeller
+        : true;
+      const categoryMatch = selectedCategory
+        ? p.category_name === selectedCategory
+        : true;
       return sellerMatch && categoryMatch;
     });
   }, [selectedSeller, selectedCategory, products]);
@@ -41,22 +47,36 @@ export default function ClientProductGrid({ products }: ClientProductGridProps) 
       {/* FILTER BAR */}
       <section className={styles.filters}>
         <div className={styles.filterCategory}>
-          <label className={styles.filterLabel}>Seller: 
-            <select className={styles.filterSelect} value={selectedSeller} onChange={(e) => setSelectedSeller(e.target.value)}>
+          <label className={styles.filterLabel}>
+            Seller:&nbsp;&nbsp;
+            <select
+              className={styles.filterSelect}
+              value={selectedSeller}
+              onChange={(e) => setSelectedSeller(e.target.value)}
+            >
               <option value="">All</option>
               {sellers.map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s} value={s}>
+                  {s}
+                </option>
               ))}
             </select>
           </label>
         </div>
 
         <div className={styles.filterCategory}>
-          <label className={styles.filterLabel}>Category:
-            <select className={styles.filterSelect} value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+          <label className={styles.filterLabel}>
+            Category:&nbsp;&nbsp;
+            <select
+              className={styles.filterSelect}
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
               <option value="">All</option>
               {categories.map((c) => (
-                <option key={c} value={c}>{c}</option>
+                <option key={c} value={c}>
+                  {c}
+                </option>
               ))}
             </select>
           </label>
@@ -67,7 +87,11 @@ export default function ClientProductGrid({ products }: ClientProductGridProps) 
       <section className={styles.products}>
         <div className={styles.productsRow}>
           {filteredProducts.map((p) => (
-            <Link key={p.id} href={`/product/${p.id}`} className={styles.productCard}>
+            <Link
+              key={p.id}
+              href={`/product/${p.id}`}
+              className={styles.productCard}
+            >
               <Image
                 src={p.image_url}
                 alt={p.name}
