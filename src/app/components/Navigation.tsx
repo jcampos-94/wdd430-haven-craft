@@ -54,7 +54,7 @@ export function Navigation() {
           </>
         ) : (
           <Link href="/login" className="hover:underline">
-            Log In
+            Log In (Seller)
           </Link>
         )}
       </div>

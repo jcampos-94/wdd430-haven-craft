@@ -75,7 +75,7 @@
 }
 
 .button:hover {
-  background: #308465;
+  background: #116111;
 }
 
 .reviewSection {
@@ -110,17 +110,18 @@
 }
 
 .submitButton {
-  background-color: #0070f3;
+  background-color: var(--accent);
   color: white;
   border: none;
   border-radius: 6px;
   padding: 0.6rem 1.2rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  font-size: 1.3em;
 }
 
 .submitButton:hover {
-  background-color: #0059c1;
+  background-color: #116111;
 }
 
 .reviewsList {
@@ -136,7 +137,6 @@
 .reviewCard p {
   margin: 0.3rem 0;
 }
-
 
 /* 📱 Responsive: stack vertically */
 @media (max-width: 768px) {

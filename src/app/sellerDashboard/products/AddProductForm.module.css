@@ -1,5 +1,5 @@
 .formContainer {
-  background: white;
+  background: #f9fffa;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -10,6 +10,8 @@
 .formContainer h1 {
   margin-bottom: 2rem;
   color: #333;
+  font-size: 1.3em;
+  font-weight: 600;
 }
 
 .form {
@@ -48,7 +50,7 @@
 }
 
 .formGroup small {
-  color: #777;
+  color: #404040;
   font-size: 0.875rem;
 }
 
@@ -70,13 +72,13 @@
 }
 
 .submitButton {
-  background-color: #4bfb66;
-  color: rgb(18, 16, 16);
+  background-color: #081c15;
+  color: white;
   border: none;
 }
 
 .submitButton:hover:not(:disabled) {
-  background-color: #158823;
+  background-color: #116111;
   color: white;
 }
 
