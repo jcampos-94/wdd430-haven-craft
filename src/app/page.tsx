@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import styles from './page.module.css';
 import { getProducts, Product } from './lib/data';
 import ClientProductGrid from './ClientProductGrid';
