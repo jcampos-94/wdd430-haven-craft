@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { deleteProduct } from '@/app/lib/data';
 import { auth } from '@/auth';
 import { getSellerByEmail } from '@/app/lib/data';
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
   try {
     const session = await auth();
     
@@ -21,7 +21,8 @@ export async function DELETE(
       return NextResponse.json({ error: 'Seller not found' }, { status: 404 });
     }
 
-    const productId = parseInt(params.id);
+    const { id } = await context.params;
+    const productId = parseInt(id);
     
     if (isNaN(productId)) {
       return NextResponse.json({ error: 'Invalid product ID' }, { status: 400 });
