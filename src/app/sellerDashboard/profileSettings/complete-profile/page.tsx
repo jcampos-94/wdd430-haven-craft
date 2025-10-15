@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import type { Seller } from "@/app/lib/data";
-import styles from "./CompleteProfileForm.module.css";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import type { Seller } from '@/app/lib/data';
+import styles from './CompleteProfileForm.module.css';
 
 export default function CompleteProfilePage() {
   const router = useRouter();
   const [seller, setSeller] = useState<Seller | null>(null);
-  const [location, setLocation] = useState("");
-  const [craft, setCraft] = useState("");
+  const [location, setLocation] = useState('');
+  const [craft, setCraft] = useState('');
   const [story, setStory] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -17,20 +17,20 @@ export default function CompleteProfilePage() {
   useEffect(() => {
     async function fetchSeller() {
       try {
-        const res = await fetch("/api/current-seller", { cache: "no-store" });
+        const res = await fetch('/api/current-seller', { cache: 'no-store' });
 
         if (!res.ok) {
-          throw new Error("Failed to fetch seller");
+          throw new Error('Failed to fetch seller');
         }
 
         const data: Seller = await res.json();
         setSeller(data);
-        setLocation(data.location || "");
-        setCraft(data.craft || "");
-        setStory(data.story || "");
+        setLocation(data.location || '');
+        setCraft(data.craft || '');
+        setStory(data.story || '');
       } catch (error) {
         console.error(error);
-        router.push("/login"); // redirect if not authorized
+        router.push('/login'); // redirect if not authorized
       }
     }
 
@@ -42,18 +42,18 @@ export default function CompleteProfilePage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/current-seller", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/current-seller', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ location, craft, story }),
       });
 
-      if (!res.ok) throw new Error("Failed to update profile");
+      if (!res.ok) throw new Error('Failed to update profile');
 
-      router.push("/sellerDashboard"); // redirect after saving
+      router.push('/sellerDashboard'); // redirect after saving
     } catch (error) {
       console.error(error);
-      alert("Failed to update profile");
+      alert('Failed to update profile');
       setLoading(false);
     }
   };
@@ -63,10 +63,10 @@ export default function CompleteProfilePage() {
   return (
     <div className={styles.formContainer}>
       <h1>Complete Your Profile</h1>
-      
+
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
-        <label htmlFor="location">Location</label>
+          <label htmlFor="location">Location</label>
           <input
             type="text"
             value={location}
@@ -75,11 +75,10 @@ export default function CompleteProfilePage() {
             placeholder="City, Country"
             required
           />
-        
         </div>
 
         <div className={styles.formGroup}>
-        <label htmlFor="craft">Craft</label>
+          <label htmlFor="craft">Craft</label>
           <input
             type="text"
             value={craft}
@@ -91,23 +90,23 @@ export default function CompleteProfilePage() {
         </div>
 
         <div className={styles.formGroup}>
-        <label htmlFor="story">Your Story</label>
-        <textarea
-          id="story"
-          value={story}
-          name="story"
-          onChange={(e) => setStory(e.target.value)}
-          placeholder="Tell us about your craft, your journey, or your shop..."
-          rows={4}
-        />
+          <label htmlFor="story">Your Story</label>
+          <textarea
+            id="story"
+            value={story}
+            name="story"
+            onChange={(e) => setStory(e.target.value)}
+            placeholder="Tell us about your craft, your journey, or your shop..."
+            rows={4}
+          />
         </div>
-        
+
         <button
           type="submit"
           disabled={loading}
-          className="submitButton"
+          className={styles.submitButton}
         >
-          {loading ? "Saving..." : "Save Profile"}
+          {loading ? 'Saving...' : 'Save Profile'}
         </button>
       </form>
     </div>

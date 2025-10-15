@@ -324,6 +324,14 @@
   padding: 24px;
 }
 
+/* Main */
+.sellerProfileMain {
+  flex: 1;
+  padding: 24px;
+  max-width: 80vh;
+  margin: 0 auto;
+}
+
 /* Header */
 .headerSection {
   background: #f9fffa;
