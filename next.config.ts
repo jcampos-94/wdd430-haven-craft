@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'www.visualmindcourses.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.halcyonyarn.com',
+      },
     ],
   },
 };
