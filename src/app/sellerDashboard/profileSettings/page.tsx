@@ -36,16 +36,13 @@ export default function ProfileSettings() {
         <h1>Profile Settings</h1>
         <div className={styles.conditional}>
           <p>Complete account information for your Seller Profile here.</p>
-
-          {isProfileComplete === false && (
-            <Link
+          <Link
               href="/sellerDashboard/profileSettings/complete-profile"
               className={styles.button}
             >
               Complete Profile
             </Link>
-          )}
-
+          
           {isProfileComplete === true && (
             <p className={styles.complete}>
               ✅ Your profile is complete!
