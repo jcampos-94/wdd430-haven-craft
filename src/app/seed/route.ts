@@ -54,7 +54,9 @@ export async function GET() {
         ('Emma Johnson', 'emma@haven.com', 'Hartford, USA', '/images/sellers/emma.jpg', 'Jewelry Making'),
         ('Sarah Cox', 'sarah@haven.com', 'Utah, USA', '/images/sellers/sarah.jpg', 'Ceramic Pottery'),
         ('Maria Santos', 'maria@haven.com', 'Cebu, Philippines', '/images/sellers/maria.jpg', 'Textile Weaving'),
-        ('Aisha Aliezar', 'aisha@haven.com', 'Marrakesh, Morocco', '/images/sellers/aisha.jpg', 'Jewelry Making');
+        ('Aisha Aliezar', 'aisha@haven.com', 'Marrakesh, Morocco', '/images/sellers/aisha.jpg', 'Jewelry Making'),
+        ('Stephanie Dacullo', 'stephanie.selanoba@me.com', 'Cebu, Philippines', 'https://avatars.githubusercontent.com/u/123456789?v=4', 'Handcrafted Jewelry');
+;
     `;
 
     // Insert products (at least 10)

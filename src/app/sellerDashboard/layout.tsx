@@ -1,14 +1,20 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from '../profile.module.css';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  // Extract seller ID from the current URL
+  const match = pathname.match(/\/sellerDashboard\/(\d+)/);
+  const sellerId = match ? match[1] : null;
+
+  // Build dashboard and product links based on context
+  const basePath = sellerId ? `/sellerDashboard/${sellerId}` : '/sellerDashboard';
+
   return (
     <ProtectedRoute>
       <section className={styles.sellerDashboard}>
@@ -17,23 +23,11 @@ export default function DashboardLayout({
           <div>
             <h2 className={styles.sidebarTitle}>Seller Menu</h2>
             <nav className={styles.navLinks}>
-              <Link href="/sellerDashboard" className={styles.navLink}>
+              <Link href={basePath} className={styles.navLink}>
                 🏠 Dashboard
               </Link>
-              <Link href="/sellerDashboard/products" className={styles.navLink}>
+              <Link href={`${basePath}/products`} className={styles.navLink}>
                 🛍️ Products
-              </Link>
-              <Link href="/sellerDashboard/orders" className={styles.navLink}>
-                📦 Orders
-              </Link>
-              <Link
-                href="/sellerDashboard/profileSettings"
-                className={styles.navLink}
-              >
-                👤 Profile & Settings
-              </Link>
-              <Link href="/sellerDashboard/reviews" className={styles.navLink}>
-                💬 Customer Feedback
               </Link>
             </nav>
           </div>
@@ -42,7 +36,7 @@ export default function DashboardLayout({
           </div>
         </aside>
 
-        {/* Main Content (Dashboard pages) */}
+        {/* Main Content */}
         {children}
       </section>
     </ProtectedRoute>
