@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { deleteProduct } from '@/app/lib/data';
 import { auth } from '@/auth';
 import { getSellerByEmail } from '@/app/lib/data';
 
 export async function DELETE(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
