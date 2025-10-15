@@ -5,8 +5,8 @@ import { getSellerByEmail } from '@/app/lib/data';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+  context: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
   try {
     const session = await auth();
     
@@ -21,7 +21,8 @@ export async function DELETE(
       return NextResponse.json({ error: 'Seller not found' }, { status: 404 });
     }
 
-    const productId = parseInt(params.id);
+    const { id } = await context.params;
+    const productId = parseInt(id);
     
     if (isNaN(productId)) {
       return NextResponse.json({ error: 'Invalid product ID' }, { status: 400 });
