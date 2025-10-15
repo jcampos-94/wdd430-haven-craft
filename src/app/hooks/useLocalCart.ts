@@ -5,7 +5,7 @@ export type CartItem = {
   name: string;
   price: number;
   image: string;
-  qty?: number; // si no existe en tu cart, se asume 1
+  qty?: number;
 };
 
 export function useLocalCart() {
@@ -13,16 +13,26 @@ export function useLocalCart() {
 
   useEffect(() => {
     const raw = localStorage.getItem('cart') || '[]';
-    const parsed: any[] = JSON.parse(raw);
-    const normalized = parsed.map((it) => ({
-      name: it.name,
-      price: Number(it.price),
-      image: it.image,
-      qty: it.qty ? Number(it.qty) : 1,
-    }));
-    setItems(normalized);
+    try {
+      const parsed: any[] = JSON.parse(raw);
+      const normalized = parsed.map((it) => ({
+        name: it.name,
+        price: Number(it.price),
+        image: it.image,
+        qty: it.qty ? Number(it.qty) : 1,
+      }));
+      setItems(normalized);
+    } catch {
+      setItems([]);
+    }
   }, []);
 
   const subtotal = items.reduce((acc, it) => acc + it.price * (it.qty ?? 1), 0);
-  return { items, subtotal };
+
+  function clear() {
+    setItems([]);
+    localStorage.removeItem("cart");
+  }
+
+  return { items, subtotal, clear };
 }
